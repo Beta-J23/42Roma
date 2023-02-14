@@ -1,59 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/24 15:02:16 by alpelliz          #+#    #+#             */
+/*   Updated: 2023/02/14 18:01:00 by alpelliz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-size_t    gnl_strlen(char *str)
+int	ft_strlen(char *s)
 {
-    size_t    i;
+	int	i;
 
-    i = 0;
-    if (!str)
-        return (0);
-    while (str[i] != '\0')
-        i++;
-    return (i);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-char    *gnl_strchr(char *s, int c)
+char	*ft_strjoin2(char *s1, char *s2)
 {
-    unsigned char    uc;
+	int		i;
+	int		j;
+	char	*dst;
 
-    uc = c;
-    if (!s)
-        return (0);
-    while (*s != '\0')
-    {
-        if (*s == uc)
-            return ((char *)s);
-        s++;
-    }
-    if (*s == uc)
-        return ((char *)s);
-    return (0);
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (0);
+	dst = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!dst)
+		return (0);
+	i = -1;
+	j = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			dst[i] = s1[i];
+	while (s2[j] != '\0')
+		dst[i++] = s2[j++];
+	dst[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (dst);
 }
 
-char    *gnl_strjoin(char *s1, char *s2)
+char	*ft_strchr(char *s, char c)
 {
-    size_t    i;
-    size_t    j;
-    char    *str;
+	unsigned char	uc;
 
-    if (!s1)
-    {
-        s1 = (char *)malloc(1 * sizeof(char));
-        s1[0] = '\0';
-    }
-    if (!s1 || !s2)
-        return (0);
-    str = malloc(sizeof(char) * ((gnl_strlen(s1) + gnl_strlen(s2)) + 1));
-    if (!str)
-        return (0);
-    i = -1;
-    j = 0;
-    if (s1)
-        while (s1[++i] != '\0')
-            str[i] = s1[i];
-    while (s2[j] != '\0')
-        str[i++] = s2[j++];
-    str[gnl_strlen(s1) + gnl_strlen(s2)] = '\0';
-    free(s1);
-    return (str);
+	uc = c;
+	if (!s)
+		return (0);
+	while (*s != '\0')
+	{
+		if (*s == uc)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == uc)
+		return ((char *)s);
+	return (0);
 }
