@@ -1,36 +1,94 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 15:47:29 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/01/25 16:10:44 by alpelliz         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-static int counter;
-int     x = 2;
-
-char *get_next_line(int fd)
+char    *ft_reading(int fd, char *save)
 {
-    return (0);
+    char    *tmp;
+    int        i;
+
+    tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
+    if (!tmp)
+        return (0);
+    i = 1;
+    while (!gnl_strchr(save, '\n') && i != 0)
+    {
+        i = read(fd, tmp, BUFFER_SIZE);
+        if (i == -1)
+        {
+            free(tmp);
+            return (0);
+        }
+        tmp[i] = '\0';
+        save = gnl_strjoin(save, tmp);
+    }
+    free(tmp);
+    return (save);
 }
 
-int main()
+char    *ft_get_line(char *save)
 {
-    int fd;
-    char *line;
+    int        i;
+    char    *line;
 
-    fd = open("ciao.c", O_RDONLY);
-    while (line = get_next_line(fd))
+    i = 0;
+    if (!save[i])
+        return (0);
+    while (save[i] && save[i] != '\n')
+        i++;
+    line = (char *)malloc(sizeof(char) * (i + 2));
+    if (!line)
+        return (0);
+    i = 0;
+    while (save[i] && save[i] != '\n')
     {
-        printf("%s", line);
+        line[i] = save[i];
+        i++;
     }
-    x += ft_strlen("ciaone");
-    x += ft_strlen("ciaone");
-    printf("%d\n", x);
+    if (save[i] == '\n')
+    {
+        line[i] = save[i];
+        i++;
+    }
+    line[i] = '\0';
+    return (line);
+}
+
+char    *ft_backup(char *save)
+{
+    int        i;
+    int        j;
+    char    *backup;
+
+    i = 0;
+    while (save[i] && save[i] != '\n')
+        i++;
+    if (!save[i])
+    {
+        free(save);
+        return (0);
+    }
+    backup = (char *)malloc(sizeof(char) * (gnl_strlen(save) - i + 1));
+    if (!backup)
+        return (0);
+    i++;
+    j = 0;
+    while (save[i])
+        backup[j++] = save[i++];
+    backup[j] = '\0';
+    free(save);
+    return (backup);
+}
+
+char    *get_next_line(int fd)
+{
+    static char    *save;
+    char        *line;
+
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (0);
+    save = ft_reading(fd, save);
+    if (!save)
+        return (0);
+    line = ft_get_line(save);
+    save = ft_backup(save);
+    return (line);
 }
