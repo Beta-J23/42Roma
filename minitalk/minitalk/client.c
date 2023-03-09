@@ -24,13 +24,54 @@ int	ft_isalnum(int c)
 //minitalk can only send 2 types of signal: SIGUSR1 SIGUSR2, int 10 e int 12, that will become 1 e 0. These will be converted into binary and sent to server. TRY MORSE for letters and numbers;
 void	morse_converter(char	c)
 {
-	printf("ARRIVED IN MORSE CONVERTER! c is:%c\n", c);
+	ft_printf("ARRIVED IN MORSE CONVERTER! c is:%c\n", c);
 }
 
-int		client_function(char c, int	pid)
+int		send_0(char c, int pid)
 {
-	printf("client is handling correct argv that is: %c\n", c);
+	ft_printf("0 FUNCTION: %c\n", c);
+	kill(pid, SIGUSR1);
+	return (0);
+}
+
+int		send_1(char c, int	pid)
+{
+	ft_printf("1 FUNCTION: %c\n", c);
 	kill(pid, SIGUSR2);
+	return (1);
+}
+
+int		bit_maker(char c, int pid)
+{
+
+	if (ft_isalpha(c) == 1)
+		{
+			ft_printf("isapha is: %d\n", ft_isalpha(c));
+			send_0(c, pid);
+		}
+	else
+		send_1(c, pid);
+	//int		binary;
+	/*
+	// convert char in ascii and convert it in binary
+	while (c != '\0')
+	{
+		if (ft_isalpha(c) == 1)
+		{
+			ft_printf("isapha is: %d\n", ft_isalpha(c));
+			send_0(c, pid);
+		}
+		else
+			send_1(c, pid);
+	}
+	*/
+	return(0);
+}
+
+int		client_function(char	c, int	pid)
+{
+	ft_printf("client is handling correct argv that is: %c\n", c);
+	kill(pid, SIGUSR1);
 	return (0);
 }
 
@@ -49,13 +90,14 @@ int	main(int argc, char **argv)
    		exit(EXIT_FAILURE);
    	}
    	pid = atoi(argv[1]);
-   	printf("PID: %d\n", pid);
-   	printf("string: %s\n", str);
+   	ft_printf("PID: %d\n", pid);
+   	ft_printf("string: %s\n", str);
 	while (argv[2][i] != '\0')
 	{
 		//if (ft_isalnum(argv[2][i] == 1))
 		morse_converter(argv[2][i]);
-		client_function(argv[2][i], pid);
+		//client_function(argv[2][i], pid);
+		bit_maker(argv[2][i], pid);
 		//else
 			//binary_converter(str[i]);
 		i++;

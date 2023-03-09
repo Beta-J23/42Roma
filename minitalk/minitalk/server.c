@@ -17,7 +17,7 @@ void    server_signal_handler_2(int   sig_num)
 {
     (void)sig_num;
     signal(SIGUSR2, server_signal_handler_2);
-    printf("SIGNAL 2 RECEIVED\n");
+    ft_printf("SIGNAL 2 RECEIVED\n");
     //fflush(stdout);
 }
 
@@ -39,7 +39,7 @@ int main()
     //char    *str_received;
 
     pid = getpid();
-    printf("main writes: Process id (PID) is: %d\n", pid);
+    ft_printf("main writes: Process id (PID) is: %d\n", pid);
     // CALL signal handler function if compatible signal arrive
     //if 
 
