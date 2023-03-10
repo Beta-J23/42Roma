@@ -18,4 +18,8 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
+int		client_function(char c, int	pid);
+void    ascii_to_binary(int pid, char word);
+void    server_signal_handler(int sig_num);
+
 #endif

@@ -13,6 +13,11 @@
 SRCS			= server.c client.c
 OBJS			= $(SRCS:.c=.o)
 EXTOBJS			= ft_printf/libftprintf.a libft/libft.a ft_printf/*.o libft/*.o
+SERVER			= server.out
+CLIENT			= client.out
+
+SRC_C			=	client.c
+SRC_S			=	server.c
 
 CC				= gcc
 RM				= rm -f
@@ -23,10 +28,19 @@ DEST			= a.out
 LIBFT = libft/libft.a
 FT_PRINTF = ft_printf/libftprintf.a
 
-all:				$(DEST)
+all:			$(SERVER) $(CLIENT)
 
-$(DEST): $(OBJS) $(LIBFT) $(FT_PRINTF)
-	gcc $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) -o $(DEST)
+$(NAME): all
+
+$(SERVER): $(EXTOBJS)
+	gcc $(CFLAGS) $(SRC_S) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
+	@printf "$(_SUCCESS) server ready.\n"
+#$(DEST): $(OBJS) $(LIBFT) $(FT_PRINTF)
+#	gcc $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) -o $(DEST)
+
+$(CLIENT): $(EXTOBJS)
+	@ $(CC) $(CFLAGS) $(SRC_C) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
+	@printf "$(_SUCCESS) client ready.\n"
 
 $(LIBFT):
 	make -C libft
@@ -37,7 +51,7 @@ $(FT_PRINTF):
 $(EXTOBJS):		$(FT_PRINTF) 
 
 clean:
-					$(RM) $(OBJS) $(EXTOBJS)
+					$(RM) $(OBJS) $(EXTOBJS) $(SERVER) $(CLIENT)
 
 execute :			execute
 					./a.out
