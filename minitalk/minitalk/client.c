@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <stdio.h>
 
 int	ft_isalnum(int c)
 {
@@ -51,20 +50,6 @@ int		bit_maker(char c, int pid)
 		}
 	else
 		send_1(c, pid);
-	//int		binary;
-	/*
-	// convert char in ascii and convert it in binary
-	while (c != '\0')
-	{
-		if (ft_isalpha(c) == 1)
-		{
-			ft_printf("isapha is: %d\n", ft_isalpha(c));
-			send_0(c, pid);
-		}
-		else
-			send_1(c, pid);
-	}
-	*/
 	return(0);
 }
 
@@ -75,46 +60,55 @@ int		client_function(char	c, int	pid)
 	return (0);
 }
 
+void	ascii_to_binary(int	pid, char word)
+{
+	int bitshift;
+
+	bitshift = -1;
+   	//printf("%c[%d]: ", word, word);
+   	while (++bitshift < 8)
+   	{
+   		if (word & 0x80 >> bitshift)
+		{
+   			//ft_printf("1");
+			kill(pid, SIGUSR1);
+		}
+   		else
+		{
+   			//ft_printf("0");
+			kill(pid, SIGUSR2);
+		}
+		usleep(700);
+   	}
+}
+
 int	main(int argc, char **argv)
 {
 	int		pid;
+	int		client_pid;
 	char	*str;
 	int		i;
+	char	*word;
 
-	//str = "prova";
+	word = argv[2];
+	client_pid = (getpid());
 	i = 0;
 	str = ft_strdup(argv[2]);
 	if (argc != 3)
    	{
-   		printf("number of argument is invalid\n");
+   		ft_printf("number of argument is invalid\n");
    		exit(EXIT_FAILURE);
    	}
-   	pid = atoi(argv[1]);
+	
+   	pid = ft_atoi(argv[1]);
    	ft_printf("PID: %d\n", pid);
    	ft_printf("string: %s\n", str);
-	while (argv[2][i] != '\0')
+	ft_printf("client pid is: %d\n", client_pid);
+	while (word[i] != '\0')
 	{
-		//if (ft_isalnum(argv[2][i] == 1))
-		morse_converter(argv[2][i]);
-		//client_function(argv[2][i], pid);
-		bit_maker(argv[2][i], pid);
-		//else
-			//binary_converter(str[i]);
+		ascii_to_binary(pid, word[i]);
 		i++;
-		usleep(2000);
 	}
-   	kill(pid, SIGUSR1);
+	ascii_to_binary(pid, '\n');
    	return (0);
 }
-
-/*int main()
-{
-	int		i;
-	char	*test;
-	
-	test = "prrtvdhrt";
-	i = ft_strlen(test);
-	ft_printf("TEST is of %d letters\n", i);
-	return (0);
-}
-*/

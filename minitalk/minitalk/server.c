@@ -11,72 +11,88 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <sys/types.h>
 #include <stdio.h>
+
+void    binary_handler(int x)
+{
+    static char     c = 255;
+    static int      y;
+    
+    if (x == 0)
+    {
+        //ft_printf("0");
+   	    c ^= 0x80 >> y;
+    }
+    else if (x == 1)
+    {
+        //ft_printf("1");
+        c |= 128 >> y;
+    }
+    //ft_printf("c is:%d\n", c);
+    y++;
+    //ft_printf("y is:%d\n", y);
+    if (y == 8)
+    {
+        //ft_printf("-> %c\n", c);
+        ft_printf("%c", c);
+        y = 0;
+        c = 255;
+    }
+}
 
 void    server_signal_handler_2(int   sig_num)
 {
     (void)sig_num;
     signal(SIGUSR2, server_signal_handler_2);
-    ft_printf("SIGNAL 2 RECEIVED\n");
-    //fflush(stdout);
+    binary_handler(0);
 }
 
 void    server_signal_handler(int   sig_num)
 {
     (void)sig_num;
     signal(SIGUSR1, server_signal_handler);
-    printf("SIGNAL 1 RECEIVED\n");
-    fflush(stdout);
-    //signal(SIGUSR2, catch_int);
-    //ft_printf("Signal Received by server, str is:");
+    binary_handler(1);
 }
+/*
+int client_pid(int pid)
+{
+
+}
+
+struct sigaction {
+               void         (*sa_handler)(int);
+               void         (*sa_sigaction)(int, siginfo_t *, void *);
+               sigset_t     sa_mask;
+               int          sa_flags;
+               void         (*sa_restorer)(void);
+           } to_client;
+
+int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+{
+
+}
+*/
 
 
 // argc + argv to have a string from terminal, string have to be passed as parameter to client.
 int main()
 {
+    //sigset_t            myset;    
     int     pid;
-    //char    *str_received;
 
+    //sigemptyset(&sact.sa_mask);
     pid = getpid();
     ft_printf("main writes: Process id (PID) is: %d\n", pid);
     // CALL signal handler function if compatible signal arrive
-    //if 
-
-    //signal(SIGUSR2, catch_int);
-
-    //ft_printf("Signal Received by server, str is:");
-    //kill(pid, SIGUSR1);
-    //client_function(argv[1], pid);
-
-    // set the INT (Ctrl-C) signal handler to 'catch_int'
     signal(SIGUSR1, server_signal_handler);
     signal(SIGUSR2, server_signal_handler_2);
-
+    // //to_client.sa_handler = 0;
+    // sigaction(SIGUSR1, SA_SIGINFO, NULL);
+	// to_client.sa_mask = block_mask;
+	// to_client.sa_sigaction = server_signal_handler;
+   //client_pid(pid);
     while (1)
-    {
         pause();
-    }
     return(0);
 }
-
-/*
-// first, here is the signal handler 
-void catch_int(int sig_num)
-{
-    // re-set the signal handler again to catch_int, for next time 
-    signal(SIGINT, catch_int);
-    printf("Don't do that\n");
-    fflush(stdout);
-}
-
-int main(int argc, char* argv[])
-{
-    // set the INT (Ctrl-C) signal handler to 'catch_int' 
-    signal(SIGINT, catch_int);
-
-    // now, lets get into an infinite loop of doing nothing. 
-    for ( ;; )
-        pause();
-}
-*/
