@@ -23,7 +23,7 @@ void	ascii_to_binary(int pid, char word)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(700);
+		usleep(900);
 	}
 }
 
