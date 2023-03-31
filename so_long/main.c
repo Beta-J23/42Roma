@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:15:54 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/03/31 16:50:55 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:13:04 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,18 @@ int deal_key(int key, t_position *pos)
 	return (7);
 }
 
-void		sprites(char	x, t_position *sprite)
+void		starter(t_position *sprite)
+{
+	sprite->img_width = 64;
+	sprite->img_width = 64;
+	sprite->floor = mlx_xpm_file_to_image(sprite->mlx, "xpm/floor.xpm", &sprite->img_width, &sprite->img_height);
+	sprite->wall = mlx_xpm_file_to_image(sprite->mlx, "xpm/wall.xpm", &sprite->img_width, &sprite->img_height);
+	sprite->player = mlx_xpm_file_to_image(sprite->mlx, "xpm/player.xpm", &sprite->img_width, &sprite->img_height);
+	sprite->collectibles = mlx_xpm_file_to_image(sprite->mlx, "xpm/collectibles.xpm", &sprite->img_width, &sprite->img_height);
+	sprite->exit = mlx_xpm_file_to_image(sprite->mlx, "xpm/exit.xpm", &sprite->img_width, &sprite->img_height);
+}
+
+void		sprites(char	c, t_position *sprite, int x, int y)
 {
 	/*
 	sprite->relative_path = "xpm/"
@@ -65,18 +76,21 @@ void		sprites(char	x, t_position *sprite)
 	*/
 	sprite->img_width = 64;
 	sprite->img_width = 64;
-
-	if (x == '0')
-		sprite->floor = mlx_xpm_file_to_image(sprite->mlx, "xpm/floor.xpm", &sprite->img_width, &sprite->img_height);
-	else if (x == '1')
-		sprite->wall = mlx_xpm_file_to_image(sprite->mlx, "xpm/wall.xpm", &sprite->img_width, &sprite->img_height);
-	else if (x == 'P')
-		sprite->player = mlx_xpm_file_to_image(sprite->mlx, "xpm/player.xpm", &sprite->img_width, &sprite->img_height);
-	else if (x == 'C')
-		sprite->collectibles = mlx_xpm_file_to_image(sprite->mlx, "xpm/collectibles.xpm", &sprite->img_width, &sprite->img_height);
-	else if (x == 'E')
-		sprite->exit = mlx_xpm_file_to_image(sprite->mlx, "xpm/exit.xpm", &sprite->img_width, &sprite->img_height);
-	
+/*
+	if (c == '0')
+	{
+		//sprite->floor = mlx_xpm_file_to_image(sprite->mlx, "xpm/floor.xpm", &sprite->img_width, &sprite->img_height);
+		mlx_put_image_to_window(sprite->mlx, sprite->mlx_win, sprite->wall, x, y);
+	}
+	if (c == '1')
+		//sprite->wall = mlx_xpm_file_to_image(sprite->mlx, "xpm/wall.xpm", &sprite->img_width, &sprite->img_height);
+	else if (c == 'P')
+		//sprite->player = mlx_xpm_file_to_image(sprite->mlx, "xpm/player.xpm", &sprite->img_width, &sprite->img_height);
+	else if (c == 'C')
+		//sprite->collectibles = mlx_xpm_file_to_image(sprite->mlx, "xpm/collectibles.xpm", &sprite->img_width, &sprite->img_height);
+	else if (c == 'E')
+		//sprite->exit = mlx_xpm_file_to_image(sprite->mlx, "xpm/exit.xpm", &sprite->img_width, &sprite->img_height);
+	*/
 }
 
 char 	create_map(char *map, t_position *var)
@@ -88,6 +102,7 @@ char 	create_map(char *map, t_position *var)
 
 	fd = open(map, O_RDONLY);
 	i = 0;
+	j = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -97,24 +112,37 @@ char 	create_map(char *map, t_position *var)
 		line = malloc(sizeof(char) * ft_strlen(line));
 		while (line[i] != '\n')
 		{
-			if (line[i] == '1')
-				sprites(1, var); //	draw_wall
+			if (line[i] == 'x')
+				break;
+			else if (line[i] == '1')
+			{
+				//sprites('1', var, i, j); //	draw_wall
+				mlx_put_image_to_window(var->mlx, var->mlx_win, var->wall, i * 64, j * 64);
+				
+			}
 			else if (line[i] == '0')
-				sprites(0, var); //	draw floor
+			{
+				//sprites('0', var, i , j); //	draw floor
+				mlx_put_image_to_window(var->mlx, var->mlx_win, var->floor, i * 64, j * 64);
+			}
 			else if (line[i] == 'P')
-				sprites('P', var); //	draw Player
+				//sprites('P', var, i , j); //	draw Player
+				mlx_put_image_to_window(var->mlx, var->mlx_win, var->player, i * 64, j * 64);
 			else if (line[i] == 'C')
-				sprites('C', var); //	draw collectibles
+				//sprites('C', var, i , j); //	draw collectibles
+				mlx_put_image_to_window(var->mlx, var->mlx_win, var->collectibles, i * 64, j * 64);
 			else if (line[i] == 'E')
-				sprites('E', var); // draw exit
+				//sprites('E', var, i, j); // draw exit
+				mlx_put_image_to_window(var->mlx, var->mlx_win, var->exit, i * 64, j * 64);
 			i++;
 		}
+		j++;
 		free (line);
 	}
 	return(0);
 }
 
-int check_map(char *map)
+int check_map(char *map, t_position *pos)
 {
 	char		*strmap;
 	int			fd;
@@ -183,6 +211,8 @@ int check_map(char *map)
 		ft_printf("No Player in the field!\n");
 		x = 1;
 	}
+	pos->x = i;
+	pos->y = k;
 	return (x);
 	/// CHECK TO DO : LAST LINE IS ALL 1; IN THE MAP 0 1 C E ARE PRESENT.
 	/// DO 1 EXTERNAL FUNCTION FOR ERRORS. (RETURN DIFFERENT NUMBER TO WRITE DIFFERENT ERRORS).
@@ -191,13 +221,13 @@ int check_map(char *map)
 
 int main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	int 	key;
+	void		*mlx;
+	void		*mlx_win;
+	int 		key;
 	//void	*tux;
-	int		x = 2;
-	int 	y = 2;
-	t_data	img;
+	//int		x = 2;
+	//int 	y = 2;
+	t_data		img;
 	t_position	pos;
 	
 	if (argc != 2)
@@ -205,20 +235,21 @@ int main(int argc, char **argv)
 		ft_printf("Error, invalid number of args\n");
 		return (0);
 	}
-	if (check_map(argv[1]) == 1)
+	if (check_map(argv[1], &pos) == 1)
 	{
 		ft_printf("Map is invalid!!!\n");
 		return(0);
 	}
-	create_map(argv[1], &pos);
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Daje tutta");
+	mlx_win = mlx_new_window(mlx, (pos.x * 64), (pos.y * 64), "Daje tutta");
 	pos.mlx = mlx;
 	pos.mlx_win = mlx_win;
-	img.img = mlx_new_image(mlx, 1920,1080);
+	//img.img = mlx_new_image(mlx, 1920,1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);	
-	pos.tux = mlx_xpm_file_to_image(mlx, "xpm/vek.xpm", &x, &y);
-	mlx_put_image_to_window(mlx, mlx_win, pos.tux, pos.x, pos.y);
+	//pos.tux = mlx_xpm_file_to_image(mlx, "xpm/vek.xpm", &x, &y);
+	starter(&pos);
+	create_map(argv[1], &pos);
+	//mlx_put_image_to_window(mlx, mlx_win, pos.tux, pos.x, pos.y);
 	mlx_hook(mlx_win, 2, (1L<<0), deal_key, &pos);
 	mlx_loop(mlx);
 	
