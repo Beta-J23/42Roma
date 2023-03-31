@@ -5,181 +5,221 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 12:45:28 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/03/29 19:34:29 by alpelliz         ###   ########.fr       */
+/*   Created: 2023/03/30 12:15:54 by alpelliz          #+#    #+#             */
+/*   Updated: 2023/03/31 16:50:55 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "ft_printf/ft_printf.h"
-#include <stdio.h>
-#include <mlx.h>
-#include <math.h>
-#include <unistd.h>
-
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-}	t_data;
-
-typedef struct s_position
-{
-	void *mlx; 
-	void *mlx_win; 
-	int beginX; 
-	int beginY; 
-	int endX; 
-	int endY;
-	int color;
-}	t_position;
+#include "so_long.h"
 
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-
-
-int draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
-{
-	double pixelX = beginX;
-	double pixelY = beginY;
-	double deltaX = endX - beginX; 
-	double deltaY = endY - beginY; 
-	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels;
-	deltaY /= pixels;
-	while (pixels)
-	{
-		mlx_pixel_put(mlx, win, pixelX, pixelY, color);
-		pixelX += deltaX;
-		pixelY += deltaY;
-		--pixels;
-	}
-	return(0);
-}
 
 int deal_key(int key, t_position *pos)
 {
-	//printf("%d\n", key);
-	draw_line(pos->mlx, pos->mlx_win, pos->beginX, pos->beginY, pos->endX, pos->endY, 0x000000);
+	mlx_clear_window(pos->mlx, pos->mlx_win);	
+	//mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
+	ft_printf("%d\n", key);
+	if (key == 53)
+	{
+		ft_printf("Goodbye\n");
+		exit (0);
+	}
 	if (key == 123) //sx
-	{	
-		pos->beginX -= 10;
-		pos->endX -= 10;
+	{
 		ft_putchar('L');
+		pos->x -= 50;
 	}
 	else if (key == 124) //dx
 	{
-		pos->beginX += 10;
-		pos->endX += 10;
 		ft_putchar('R');
+		pos->x += 50;
 	}
 	else if (key == 126) //up
 	{
-		pos->beginY -= 10;
-		pos->endY -= 10;
-		//pos->beginX = pos->endX - 1;
 		ft_putchar('U');
+		pos->y -= 50;
 	}
 	else if (key == 125) //down
 	{
-		pos->beginY += 10;
-		pos->endY += 10;
 		ft_putchar('D');
-	}
-	draw_line(pos->mlx, pos->mlx_win, pos->beginX, pos->beginY, pos->endX, pos->endY, pos->color);
-	//sleep(1);
+		pos->y += 50;
+	}//*mlx_xpm_file_to_image(void *mlx_pointer, char *relative_path, int *width, int *height);
+	//mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
+	
+	mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
 	return (7);
 }
-/*
-//DRAWLINE ALTERNATIVE
-int draw_line(t_position pos)
+
+void		sprites(char	x, t_position *sprite)
 {
-	int 	key;
-	double pixelX = pos.beginX;
-	double pixelY = pos.beginY;
-	double deltaX = pos.endX - pos.beginX; 
-	double deltaY = pos.endY - pos.beginY; 
-	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels;
-	deltaY /= pixels;
-	mlx_key_hook(pos.mlx_win, deal_key, &key);
-	while (pixels)
+	/*
+	sprite->relative_path = "xpm/"
+	void	*floor;
+	void	*wall;
+	void	*player;
+	void	*collectibles;
+	void	*exit;
+	char	*relative_path;
+	int		width;
+	int		height;
+	*/
+	sprite->img_width = 64;
+	sprite->img_width = 64;
+
+	if (x == '0')
+		sprite->floor = mlx_xpm_file_to_image(sprite->mlx, "xpm/floor.xpm", &sprite->img_width, &sprite->img_height);
+	else if (x == '1')
+		sprite->wall = mlx_xpm_file_to_image(sprite->mlx, "xpm/wall.xpm", &sprite->img_width, &sprite->img_height);
+	else if (x == 'P')
+		sprite->player = mlx_xpm_file_to_image(sprite->mlx, "xpm/player.xpm", &sprite->img_width, &sprite->img_height);
+	else if (x == 'C')
+		sprite->collectibles = mlx_xpm_file_to_image(sprite->mlx, "xpm/collectibles.xpm", &sprite->img_width, &sprite->img_height);
+	else if (x == 'E')
+		sprite->exit = mlx_xpm_file_to_image(sprite->mlx, "xpm/exit.xpm", &sprite->img_width, &sprite->img_height);
+	
+}
+
+char 	create_map(char *map, t_position *var)
+{
+	int		i;
+	int		j;
+	int		fd;
+	char	*line;
+
+	fd = open(map, O_RDONLY);
+	i = 0;
+	while (1)
 	{
-		mlx_pixel_put(pos.mlx, pos.mlx_win, pixelX, pixelY, pos.color);
-		pixelX += deltaX;
-		pixelY += deltaY;
-		--pixels;
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		i = 0;
+		line = malloc(sizeof(char) * ft_strlen(line));
+		while (line[i] != '\n')
+		{
+			if (line[i] == '1')
+				sprites(1, var); //	draw_wall
+			else if (line[i] == '0')
+				sprites(0, var); //	draw floor
+			else if (line[i] == 'P')
+				sprites('P', var); //	draw Player
+			else if (line[i] == 'C')
+				sprites('C', var); //	draw collectibles
+			else if (line[i] == 'E')
+				sprites('E', var); // draw exit
+			i++;
+		}
+		free (line);
 	}
 	return(0);
 }
-*/
 
-//drawing lines
-int main(void)
+int check_map(char *map)
+{
+	char		*strmap;
+	int			fd;
+	int			i;
+	int			j;
+	int			k;
+	int			z;
+	int			x;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	x = 0;
+	z = 0;
+	//map = malloc(sizeof(char) * ft_strlen(map));
+	fd = open(map, O_RDONLY);
+	while (1)
+	{
+		strmap = get_next_line(fd);
+		if (strmap == NULL)
+			break;
+		//ft_printf("%s", strmap);
+		if (k == 0)
+		{
+			while (strmap[z] != '\n') // CHECK THAT FIRST LINE IS ALL 1.
+			{
+				if (strmap[z] != '1')
+				{
+					ft_printf("The wall at the bottom is broken!!!\n");
+					x = 1;
+				} 
+				z++;
+			}
+		}
+		strmap = malloc(sizeof(char) * ft_strlen(strmap));
+		i = 0;	
+		while (strmap[i] != '\0')
+		{
+			if (strmap[i] == 'P') //CHECK NUMBER OF PLAYERS
+				j++;
+			if ((strmap[i] != '0') && (strmap[i] != '1') && (strmap[i] != 'P') && (strmap[i] != 'C') && (strmap[i] != 'E') && (strmap[i] != '\n'))
+				x = 1;
+			i++;
+		}
+		if (z != i - 1) //CHECK ALL LINES OF MAP ARE EQUALS
+		{
+			ft_printf("Lines of map are not equals\n");
+			x = 1;
+		}
+		if ((strmap[0] != '1') || (strmap[(ft_strlen(strmap) - 2)] != '1')) //CHECK 1(walls) at side of maps
+		{
+			ft_printf("A WALL AT THE SIDE IS BROKEN\n");
+			x = 1;
+		}
+		k++;
+		free (strmap);
+	}
+	if  (k >= z) // CHECK MAP IS RECTANGULAR
+	{
+		ft_printf("Maps is not rectangular\n");
+		x = 1;
+	}
+	//free (map);
+	if (j != 1) // CHECK 1 PLAYER EXIST
+	{
+		ft_printf("No Player in the field!\n");
+		x = 1;
+	}
+	return (x);
+	/// CHECK TO DO : LAST LINE IS ALL 1; IN THE MAP 0 1 C E ARE PRESENT.
+	/// DO 1 EXTERNAL FUNCTION FOR ERRORS. (RETURN DIFFERENT NUMBER TO WRITE DIFFERENT ERRORS).
+	/// CHECK WHY DOUBLE MAP.
+}
+
+int main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
 	int 	key;
-	int		move = 8;
+	//void	*tux;
+	int		x = 2;
+	int 	y = 2;
 	t_data	img;
 	t_position	pos;
 	
+	if (argc != 2)
+	{
+		ft_printf("Error, invalid number of args\n");
+		return (0);
+	}
+	if (check_map(argv[1]) == 1)
+	{
+		ft_printf("Map is invalid!!!\n");
+		return(0);
+	}
+	create_map(argv[1], &pos);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Daje tutta");
 	pos.mlx = mlx;
 	pos.mlx_win = mlx_win;
-	pos.beginX = 360;
-	pos.beginY = 360;
-	pos.endX = 560;
-	pos.endY = 560;
-	pos.color = 0xFFFFFF;
 	img.img = mlx_new_image(mlx, 1920,1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);	
-	draw_line(mlx, mlx_win, 360, 360, 560, 360, 0xFFFFFF);
-	//my_mlx_pixel_put(&img, 200, 200, 0x00FF0000);
-	//mlx_key_hook(mlx_win, deal_key, &key);
-	//mlx_loop_hook(mlx, draw_line, &pos);
-	//mlx_hook(mlx_win, 2, 1L<<0, deal_key, &key);
+	pos.tux = mlx_xpm_file_to_image(mlx, "xpm/vek.xpm", &x, &y);
+	mlx_put_image_to_window(mlx, mlx_win, pos.tux, pos.x, pos.y);
 	mlx_hook(mlx_win, 2, (1L<<0), deal_key, &pos);
-	//mlx_loop_hook(mlx, render_next_frame, YourStruct); ///example by guide
-	//move = deal_key(mlx_hook(mlx_win, 2, 1L<<0, deal_key, &key));
-	//move = deal_key(mlx_key_hook(mlx_win, deal_key, &key));
-	printf("%d\n", key);
+	mlx_loop(mlx);
 	
-	mlx_loop(mlx);
 }
-//IMAGE DISPLAYED ON WINDOW
-/*
-int	main(void)
-{
-	void	*mlx;
-    void	*mlx_win;
-	void	*tux
-	int		x = 743;
-	int		y = 900;
-	t_data	img;
-
-	mlx = mlx_init();
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
-	tux = mlx_xpm_file_to_image(mlx, "tux.xpm", &x, &y);
-	//my_mlx_pixel_put(&img, 200, 200, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, tux, 0, 0);
-	mlx_loop(mlx);
-}
-*/
