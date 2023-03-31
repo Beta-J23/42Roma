@@ -6,11 +6,11 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/03/31 13:57:57 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/03/31 19:30:53 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.c
+SRCS			= main.c key_dealer.c map_function.c starter.c utils.c
 OBJS			= $(SRCS:.c=.o)
 EXTOBJS			= ft_printf/libftprintf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
 
@@ -31,7 +31,7 @@ LINK			= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 
 all:
-	$(CC) $(LINK) main.c ft_printf/*.c get_next_line/*.c
+	$(CC) $(LINK) main.c key_dealer.c starter.c map_function.c utils.c ft_printf/*.c get_next_line/*.c
 #	./a.out
 
 #To link with the required internal macOS API:
