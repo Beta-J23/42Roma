@@ -6,56 +6,103 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:51:54 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/03/31 20:00:19 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:51:41 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int deal_key(int key, t_position *pos)
+int	deal_key(int key, t_position *pos)
 {
-	//mlx_clear_window(pos->mlx, pos->mlx_win);	
-	//mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
-	ft_printf("%d\n", key);
 	if (key == 53)
 	{
 		ft_printf("Goodbye\n");
+		mlx_destroy_window(pos->mlx, pos->mlx_win);
 		exit (0);
 	}
-	if (key == 123) //sx
-	{
-		ft_putchar('L');
-        /*
-        map_matrix_new(pos);
-        mlx_clear_window(pos->mlx, pos->mlx_win);
-        */
-		mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player, pos->player_x -= 64, pos->player_y);
-        
-		//pos->x -= 64;
-	}
-	else if (key == 124) //dx
-	{
-		ft_putchar('R');
-		//pos->x += 64;
-		mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player, pos->player_x += 64, pos->player_y);
-	}
-	else if (key == 126) //up
-	{
-		ft_putchar('U');
-		pos->y -= 50;
-		mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player, pos->player_x, pos->player_y -= 64);
-	}
-	else if (key == 125) //down
-	{
-		ft_putchar('D');
-		mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player, pos->player_x, pos->player_y += 64);
-		pos->y += 50;
-	}
-	//*mlx_xpm_file_to_image(void *mlx_pointer, char *relative_path, int *width, int *height);
-	//mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
-	
-		
-
-	//mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->tux, pos->x, pos->y);
+	move_left(key, pos);
+	move_right(key, pos);
+	move_up(key, pos);
+	move_down(key, pos);
 	return (7);
+}
+
+void	move_left(int key, t_position *pos)
+{
+	if ((key == 123) || (key == 0))
+	{		
+		if (map_matrix_updater(pos, (pos->player_x / 64),
+				(pos->player_y / 64), 1) == 1)
+		{
+			(pos->map_2_matrix[pos->player_y / 64][(pos->player_x / 64)
+					- 1] = 'P');
+			(pos->map_2_matrix[pos->player_y / 64][((pos->player_x / 64))]
+					= '0');
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player,
+				pos->player_x -= 64, pos->player_y);
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->floor,
+				pos->player_x + 64, pos->player_y);
+			moves(pos);
+		}
+	}
+}
+
+void	move_right(int key, t_position *pos)
+{
+	if ((key == 124) || (key == 2))
+	{
+		if (map_matrix_updater(pos, (pos->player_x / 64),
+				(pos->player_y / 64), 2) == 2)
+		{	
+			(pos->map_2_matrix[pos->player_y / 64][((pos->player_x / 64)
+						+ 1)] = 'P');
+			(pos->map_2_matrix[pos->player_y / 64][(pos->player_x / 64)]
+					= '0');
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player,
+				pos->player_x += 64, pos->player_y);
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->floor,
+				pos->player_x - 64, pos->player_y);
+			moves(pos);
+		}
+	}
+}
+
+void	move_up(int key, t_position *pos)
+{
+	if ((key == 126) || (key == 13))
+	{
+		if (map_matrix_updater(pos, (pos->player_x / 64), (pos->player_y / 64)
+				, 3) == 3)
+		{
+			(pos->map_2_matrix[(pos->player_y / 64) - 1][(pos->player_x / 64)]
+					= 'P');
+			(pos->map_2_matrix[pos->player_y / 64][((pos->player_x / 64))]
+					= '0');
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player,
+				pos->player_x, pos->player_y -= 64);
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->floor,
+				pos->player_x, pos->player_y + 64);
+			moves(pos);
+		}
+	}
+}
+
+void	move_down(int key, t_position *pos)
+{
+	if ((key == 125) || (key == 1))
+	{
+		if (map_matrix_updater(pos, (pos->player_x / 64), (pos->player_y / 64)
+				, 4) == 4)
+		{
+			(pos->map_2_matrix[(pos->player_y / 64) + 1][(pos->player_x / 64)]
+					= 'P');
+			(pos->map_2_matrix[pos->player_y / 64][((pos->player_x / 64))]
+					= '0');
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->player,
+				pos->player_x, pos->player_y += 64);
+			mlx_put_image_to_window(pos->mlx, pos->mlx_win, pos->floor,
+				pos->player_x, pos->player_y - 64);
+			moves(pos);
+		}
+	}
 }

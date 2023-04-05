@@ -6,7 +6,7 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/03/31 19:30:53 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/04/05 19:35:44 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LINK			= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 
 all:
-	$(CC) $(LINK) main.c key_dealer.c starter.c map_function.c utils.c ft_printf/*.c get_next_line/*.c
+	$(CC) $(LINK) main.c key_dealer.c starter.c counters.c map_checker_mod.c map_checker_mod_helper.c map_function.c utils.c ft_printf/*.c get_next_line/*.c
 #	./a.out
 
 #To link with the required internal macOS API:
