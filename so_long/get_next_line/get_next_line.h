@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:25:33 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/06 18:54:52 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:15:40 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 
 # define BUFFER_SIZE 1
-
 
 int		ft_strlen(char *s);
 char	*ft_strchr(char *s, char c);

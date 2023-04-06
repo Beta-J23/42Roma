@@ -6,17 +6,11 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:50:28 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/06 12:55:50 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:05:03 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-/*
-int	player_actions(t_position *pos)
-{
-	pos->player_x /= 64;
-	return (0);
-}*/
 
 int	collectible_counter(t_position *pos)
 {

@@ -6,62 +6,46 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/04/06 16:39:05 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/04/06 20:41:45 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS			= main.c key_dealer.c starter.c counters.c map_checker_mod.c map_checker_mod_helper.c \
-					map_function.c map_function_helper.c utils.c ft_printf/*.c get_next_line/*.c
+					map_function.c map_function_helper.c utils.c 
 OBJS			= $(SRCS:.c=.o)
-EXTOBJS			= ft_printf/libftprintf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
+EXTOBJS			= ft_printf/ft_printf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
+TARGET			= so_long
 
-CC				= gcc -g
+CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror
 
-GET_NEXT_LINE	= get_next_line/get_next_line.a
-FT_PRINTF		= ft_printf/libftprintf.a
+GNL				= get_next_line/*.c
+FT_PRINTF		= ft_printf/*.c
 LIBX			= -Imlx -c $< -o $@
 LINK			= -Lmlx -lmlx -framework OpenGL -framework AppKit
-#For object files, you could add the following rule to your makefile, assuming that you have the mlx source in a directory named mlx in the root of your project:
 
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(LIBX)
+all: $(TARGET)
 
+$(NAME) : all
 
-
-all:
-	$(CC) $(CFLAGS) $(LINK) $(SRCS)
-#	./a.out
-
-#To link with the required internal macOS API:
-#$(NAME): $(OBJS)
-#		$(CC)  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(OBJS) $(NAME)
-
-#all:		$(NAME)
-#$(NAME): $(OBJS)
-#	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
-#$(NAME): all
-
-#$(SO_LONG):
-#	@make -C libft
-#	@make -C ft_printf
-#	@gcc $(CFLAGS) $(SRC_S) $(FT_PRINTF) -o $(SERVER)
-#	@printf "$(_SUCCESS) ready to play.\n"
+$(TARGET):
+	@$(CC) $(CFLAGS) $(LINK) $(SRCS) $(GNL) $(FT_PRINTF) -o $(TARGET)
+	@printf 'Compilation done!\nso_long executable succesfully created!\n'
+	@printf "Ready to play.\n"
 
 clean:
-	@make -C libft clean
-	@make -C ft_printf clean
-	$(RM) $(OBJS) $(EXTOBJS) $(SERVER) $(CLIENT)
-	@printf "$(SUCCESS) Objects deleted"
+	@$(RM) $(TARGET)
+	@printf 'clean: so_long executable succesfully removed\n'
 
+re: clean all
 
-totalclean:
-					$(RM)
+fclean:
+	@$(RM) $(TARGET)
+	@printf 'fclean: Target removed\n'
 
-norm:			norm
-				norminette -R CheckSourceForbiddenHeader $(SRCS)
+norm:
+	@norminette -R CheckSourceForbiddenHeader $(SRCS) $(GNL) $(FT_PRINTF)
 				
 .PHONY:			all clean fclean re bonus norm totalclean

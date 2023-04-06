@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:15:54 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/06 19:22:35 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:10:02 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	main_helper(int argnumber, char *argv, t_position *pos, t_fcounter *c)
 		ft_printf("Error, invalid number of args\n");
 		return (0);
 	}
-	if (check_map(argv, pos, c) == 2)
-	{
-		ft_printf("File do not exist!!!\n");
-		return (0);
-	}
 	if (ber_control(argv, ".ber", 4) == 1)
 	{
 		ft_printf("File is not .ber\n");
+		return (0);
+	}
+	if (check_map(argv, pos, c) == 2)
+	{
+		ft_printf("File do not exist!!!\n");
 		return (0);
 	}
 	if (check_map(argv, pos, c) == 1)
