@@ -6,18 +6,20 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/03/29 14:25:09 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/04/06 16:39:05 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.c
+SRCS			= main.c key_dealer.c starter.c counters.c map_checker_mod.c map_checker_mod_helper.c \
+					map_function.c map_function_helper.c utils.c ft_printf/*.c get_next_line/*.c
 OBJS			= $(SRCS:.c=.o)
-EXTOBJS			= ft_printf/libftprintf.a ft_printf/*.o
+EXTOBJS			= ft_printf/libftprintf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
 
-CC				= gcc
+CC				= gcc -g
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror
 
+GET_NEXT_LINE	= get_next_line/get_next_line.a
 FT_PRINTF		= ft_printf/libftprintf.a
 LIBX			= -Imlx -c $< -o $@
 LINK			= -Lmlx -lmlx -framework OpenGL -framework AppKit
@@ -30,8 +32,8 @@ LINK			= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 
 all:
-	$(CC) $(LINK) main.c
-	./a.out
+	$(CC) $(CFLAGS) $(LINK) $(SRCS)
+#	./a.out
 
 #To link with the required internal macOS API:
 #$(NAME): $(OBJS)

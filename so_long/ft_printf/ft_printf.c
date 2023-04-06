@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:42:07 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/02/25 11:20:01 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:09:14 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,3 @@ int	ft_printf(const char *str, ...)
 	va_end(arg);
 	return (j);
 }
-
-int main()
-
