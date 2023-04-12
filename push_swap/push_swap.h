@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/12 13:22:31 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:55:53 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,29 @@
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 
-typedef struct s_stack 
-{
-	int		elements_a;
-	int		elements_b;
-	int		index;
-	int		src;
-	int		dest;
-} t_stack;
 
-int		sa(t_stack c);
-int		is_num(char x);
+typedef struct s_stack_a
+{
+	int		size;
+	int		index;
+	char	*array_a;
+	int		*array_int_a;
+} t_stack_a;
+
+
+typedef struct s_stack_b 
+{
+	int		size;
+	int		index;
+	char	*array_b;
+	int		*array_int_b;
+} t_stack_b;
+
+//int		sa(t_stack_a, c);
+int		create_int_array(t_stack_a *a, char *argv);
+int		check_argv(t_stack_a *a);
+void initializer(t_stack_a *a, t_stack_b *b);
+int array_filler(t_stack_a *a, char *arg);
 
 
 
