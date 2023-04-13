@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:44:43 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 17:15:01 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:28:32 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,33 @@ int ft_atoi_mod(char *str)
 		i++;
 	}
 	return(atoi_limit(intero * var));
+}
+
+void	ft_swap(int *a, int *b)
+{
+	int	c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
+}
+
+void array_printer(t_stack_a *a, t_stack_b *b)
+{
+	int i;
+	
+	i = 0;
+	ft_printf("\nnew array A is: ");
+	while (i < a->size_of_int)
+	{
+		ft_printf("%d ", a->array_int_a[i]);
+		i++;
+	}
+	i = 0;
+	ft_printf("\nnew array B is: ");
+	while (i < b->size_of_int)
+	{
+		ft_printf("%d ", b->array_int_b[i]);
+		i++;
+	}
 }

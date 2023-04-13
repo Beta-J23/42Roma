@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 17:38:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:22:12 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,33 @@ typedef struct s_stack_b
 	int		index;
 	char	*array_b;
 	int		*array_int_b;
+	int		size_of_int;
 } t_stack_b;
 
-//int		sa(t_stack_a, c);
 int			create_int_array(t_stack_a *a, char *argv);
 int			check_argv(t_stack_a *a);
 void		initializer(t_stack_a *a, t_stack_b *b);
 int			array_filler(t_stack_a *a, char **argv, int argc);
 int			check_double(t_stack_a *a);
 int			ft_atoi_mod(char *str);
+int			atoi_limit(long long nb);
+void		ft_swap(int *a, int *b);
 int			already_sorted(t_stack_a *a);
+int			sa(t_stack_a *a);
+int			sb(t_stack_b *b);
+int			ss(t_stack_a *a, t_stack_b *b);
+int			pa(t_stack_a *a, t_stack_b *b);
+int			pb(t_stack_a *a, t_stack_b *b);
+int			ra(t_stack_a *a);
+int			rb(t_stack_b *b);
+int			rr(t_stack_a *a, t_stack_b *b);
+int			rra(t_stack_a *a);
+int			rrb(t_stack_b *b);
+int			rrr(t_stack_a *a, t_stack_b *b);
+
+// TEST FUNCTION TO DELETE
+void array_printer(t_stack_a *a, t_stack_b *b);
+
 
 
 
