@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:32 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/12 19:10:48 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/13 12:14:25 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int main (int argc, char **argv)
 	//create_int_array(&a, argv[1]);
 	ft_printf("argv1 = %s\n", argv[1]);
 	check_argv(&a);
+	//free(a.array_a);
 	return (0);
 }
