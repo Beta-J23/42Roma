@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 11:50:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:38:05 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ typedef struct s_stack_b
 } t_stack_b;
 
 //int		sa(t_stack_a, c);
-int		create_int_array(t_stack_a *a, char *argv);
-int		check_argv(t_stack_a *a);
-void initializer(t_stack_a *a, t_stack_b *b);
-int array_filler(t_stack_a *a, char *arg);
-int		check_double(t_stack_a *a);
+int			create_int_array(t_stack_a *a, char *argv);
+int			check_argv(t_stack_a *a);
+void		initializer(t_stack_a *a, t_stack_b *b);
+int			array_filler(t_stack_a *a, char **argv, int argc);
+int			check_double(t_stack_a *a);
+int			ft_atoi_mod(char *str);
+int			already_sorted(t_stack_a *a);
 
 
 
