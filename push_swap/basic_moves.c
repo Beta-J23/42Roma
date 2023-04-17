@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:33:07 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/17 14:44:44 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:44:48 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int		sa(t_stack_a *a)
 {
 	ft_swap(&a->array_int_a[0], &a->array_int_a[1]);
+	a->counter++;
 	return (0);
 }
 
@@ -31,6 +32,7 @@ int		ss(t_stack_a *a, t_stack_b *b)
 {
 	sa(a);
 	sb(b);
+	a->counter++;
 	return (0);
 }
 
@@ -44,6 +46,7 @@ int		pa(t_stack_a *a, t_stack_b *b)
 	a->array_int_a[0] = b->array_int_b[0];
 	rb(b);
 	b->size_of_int--;
+	//a->counter++;
 	return (0);
 }
 

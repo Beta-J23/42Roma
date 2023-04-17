@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 19:22:12 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:45:49 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_stack_a
 {
 	int		size;
+	int		counter;
 	int		index;
 	char	*array_a;
 	int		*array_int_a;
@@ -60,8 +61,16 @@ int			rra(t_stack_a *a);
 int			rrb(t_stack_b *b);
 int			rrr(t_stack_a *a, t_stack_b *b);
 
+int			bubble(t_stack_a *a, t_stack_b *b);
+int			number_3(t_stack_a *a, t_stack_b *b);
+int			number_5(t_stack_a *a, t_stack_b *b);
+int			pre_pb_5(t_stack_a *a, t_stack_b *b, int x);
+
 // TEST FUNCTION TO DELETE
-void array_printer(t_stack_a *a, t_stack_b *b);
+void 		array_printer(t_stack_a *a, t_stack_b *b);
+int			move_counter(void);
+int			sorting_check(t_stack_a *a, t_stack_b *b);
+int			case_redirection(t_stack_a *a, t_stack_b *b);
 
 
 
