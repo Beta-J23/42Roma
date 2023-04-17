@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:33:07 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 19:38:52 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:44:44 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@ int		ss(t_stack_a *a, t_stack_b *b)
 // pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
 int		pa(t_stack_a *a, t_stack_b *b)
 {
-	if (b->size <= 0)
+	if (b->size_of_int <= 0)
 		return (0);
-	else
-		a->array_int_a[0] = b->array_int_b[0];
+	rra(a);
+	a->size_of_int++;
+	a->array_int_a[0] = b->array_int_b[0];
+	rb(b);
+	b->size_of_int--;
 	return (0);
 }
 
@@ -49,10 +52,11 @@ int		pb(t_stack_a *a, t_stack_b *b)
 {
 	if (a->size_of_int <= 0)
 		return (0);
-	b->size_of_int++;
-	//b->array_int_b[b->size_of_int - 1] = 0;
 	rrb(b);
+	b->size_of_int++;
 	b->array_int_b[0] = a->array_int_a[0];
+	ra(a);
+	a->size_of_int--;
 	return (0);
 }
 
@@ -60,13 +64,16 @@ int		pb(t_stack_a *a, t_stack_b *b)
 int		ra(t_stack_a *a)
 {
 	int		i;
+	int		tmp;
 	
+	tmp = a->array_int_a[0];
 	i = 0;
 	while (i < a->size_of_int)
 	{
 		ft_swap (&a->array_int_a[i], &a->array_int_a[i + 1]);
 		i++;
 	}
+	a->array_int_a[a->size_of_int - 1] = tmp;
 	return (0);
 }
 
@@ -74,13 +81,16 @@ int		ra(t_stack_a *a)
 int		rb(t_stack_b *b)
 {
 	int		i;
+	int		tmp;
 	
+	tmp = b->array_int_b[0];
 	i = 0;
 	while (i < b->size_of_int)
 	{
 		ft_swap (&b->array_int_b[i], &b->array_int_b[i + 1]);
 		i++;
 	}
+	b->array_int_b[b->size_of_int - 1] = tmp;
 	return (0);
 }
 
@@ -96,13 +106,17 @@ int		rr(t_stack_a *a, t_stack_b *b)
 int		rra(t_stack_a *a)
 {
 	int		i;
+	int		tmp;
 	
+	tmp = a->array_int_a[a->size_of_int - 1];
 	i = a->size_of_int;
 	while (i > 0)
 	{
-		ft_swap (&a->array_int_a[i], &a->array_int_a[i + 1]);
+		ft_swap (&a->array_int_a[i - 1], &a->array_int_a[i]);
 		i--;
 	}
+	a->array_int_a[0] = tmp;
+
 	return (0);
 }
 
@@ -110,13 +124,16 @@ int		rra(t_stack_a *a)
 int		rrb(t_stack_b *b)
 {
 	int		i;
+	int		tmp;
 	
+	tmp = b->array_int_b[b->size_of_int - 1];
 	i = b->size_of_int;
 	while (i > 0)
 	{
-		ft_swap (&b->array_int_b[i], &b->array_int_b[i + 1]);
+		ft_swap (&b->array_int_b[i - 1], &b->array_int_b[i]);
 		i--;
 	}
+	b->array_int_b[0] = tmp;
 	return (0);
 }
 

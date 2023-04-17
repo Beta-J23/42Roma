@@ -6,11 +6,11 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/04/12 17:01:54 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/04/17 11:17:04 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= push_swap.c check.c basic_moves.c
+SRCS			= push_swap.c check.c basic_moves.c push_swap_utils.c initializer.c
 OBJS			= $(SRCS:.c=.o)
 EXTOBJS			= ft_printf/ft_printf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
 TARGET			= push_swap
