@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:32 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/17 21:35:42 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:23:49 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,8 @@ int main (int argc, char **argv)
 	check_argv(&a);
 	b.array_int_b = malloc(sizeof(int) * 6);
 	b.size_of_int = 0;
-	//sa(&a);
-	//rra(&a);
-	/*pb(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	ra(&a);
-	rb(&b);
-	rra(&a);
-	rrb(&b);
-	sa(&a);
-	pa(&a, &b);
-	pa(&a, &b);
-	pa(&a, &b);*/
-	//bubble(&a, &b);
-	
-	//number_3(&a, &b);
-	//rra(&a);
 	case_redirection(&a, &b);
-	ft_printf("Total moves: %d\n", a.counter);
+	//ft_printf("Total moves: %d\n", a.counter);
 
 	array_printer(&a, &b);
 	free(a.array_a);

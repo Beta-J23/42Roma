@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:46:04 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 14:32:24 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:59:05 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		number_5(t_stack_a *a, t_stack_b *b)
 	array_printer(a, b);
 	i = 0;
 	//temp = 0;
+	/*
 	while (i < a->size_of_int)
 	{
 		j = 0;
@@ -76,7 +77,8 @@ int		number_5(t_stack_a *a, t_stack_b *b)
 			break;
 		}
 		i++;
-	}
+	}*/
+	i = biggest_number(a, b);
 	ft_printf("Ï = %d\n", i);
 	if (i > 2)
 		pre_pb_5(a, b, i + 1);
@@ -93,7 +95,7 @@ int		number_5(t_stack_a *a, t_stack_b *b)
 	ft_printf("\n\nCHECK\n\n");
 	return (0);
 }
-
+/*
 int	smallest_number(t_stack_a *a, t_stack_b *b)
 {
 	(void)b;
@@ -131,6 +133,43 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 	}
 	return (i);
 }
+
+int	biggest_number(t_stack_a *a, t_stack_b *b)
+{
+	(void)b;
+	int		i;
+	int		j;
+	int		z;
+	int		tmp;
+
+	i = 0;
+	j = 0;
+	z = 0;
+	tmp = a->array_int_a[0];
+	while (i < a->size_of_int)
+	{
+		j = 0;
+		z = 0;
+		while (j < a->size_of_int)
+		{
+			tmp = a->array_int_a[i];
+			if (tmp >= a->array_int_a[j])
+				z++;
+			if (z == a->size_of_int)
+			{
+				ft_printf("numero piu alto trovato e: %d\n", tmp);
+				break;
+			}
+			j++;
+		}
+		if (z == a->size_of_int)
+		{
+			break;
+		}
+		i++;
+	}
+	return (i);
+}*/
 
 int pre_pb_5(t_stack_a *a, t_stack_b *b, int x)
 {

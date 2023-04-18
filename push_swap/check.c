@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:00:31 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/13 17:48:11 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:25:08 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 			i++;
 		}
 		a->array_a = (char *)ft_calloc(j + 1, sizeof(char));
-		ft_printf ("J = %d\n", j);
+		//ft_printf ("J = %d\n", j);
 		j = 0;
 		i = 1;
 		while (i < argc)
@@ -168,7 +168,7 @@ int		check_double(t_stack_a *a)
 	while (i < a->size_of_int)
 	{
 		j = i + 1;
-		ft_printf("%d  ", a->array_int_a[i]);
+		//ft_printf("%d  ", a->array_int_a[i]);
 		while (j < a->size_of_int)
 		{
 			if (a->array_int_a[j] == a->array_int_a[i])
@@ -197,6 +197,7 @@ int		already_sorted(t_stack_a *a)
 	if (i == a->size_of_int - 1)
 	{
 		write(1, "\nArray already sorted!\n", 23);
+		//exit (0);
 		return (1);
 	}
 	else

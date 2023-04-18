@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 14:32:45 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:19:54 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ void 		array_printer(t_stack_a *a, t_stack_b *b);
 int			move_counter(void);
 int			sorting_check(t_stack_a *a, t_stack_b *b);
 int			case_redirection(t_stack_a *a, t_stack_b *b);
+int			biggest_number(t_stack_a *a, t_stack_b *b);
+
+int			number_100(t_stack_a *a, t_stack_b *b);
+int			moving_convenience(t_stack_a *a, t_stack_b *b, int x);
+int			stuff_mover(t_stack_a *a, t_stack_b *b, int	i);
+int			move_down(t_stack_a *a, t_stack_b *b, int	x);
+int			move_up(t_stack_a *a, t_stack_b *b, int	x);
+
 
 
 
