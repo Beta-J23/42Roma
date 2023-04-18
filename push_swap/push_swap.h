@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 16:19:54 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 19:16:05 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ typedef struct s_stack_b
 	int		*array_int_b;
 	int		size_of_int;
 } t_stack_b;
+
+typedef struct s_fake
+{
+	int		*chunk1;
+	int		*chunk2;
+	int		*chunk3;
+	int		*chunk4;
+	int		*chunk5;
+} t_fake;
 
 int			create_int_array(t_stack_a *a, char *argv);
 int			check_argv(t_stack_a *a);
