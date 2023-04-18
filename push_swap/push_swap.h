@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/17 20:45:49 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:32:45 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			bubble(t_stack_a *a, t_stack_b *b);
 int			number_3(t_stack_a *a, t_stack_b *b);
 int			number_5(t_stack_a *a, t_stack_b *b);
 int			pre_pb_5(t_stack_a *a, t_stack_b *b, int x);
+int			smallest_number(t_stack_a *a, t_stack_b *b);
 
 // TEST FUNCTION TO DELETE
 void 		array_printer(t_stack_a *a, t_stack_b *b);
