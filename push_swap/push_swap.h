@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 19:16:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:06:38 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
-
 
 typedef struct s_stack_a
 {
@@ -40,14 +39,6 @@ typedef struct s_stack_b
 	int		size_of_int;
 } t_stack_b;
 
-typedef struct s_fake
-{
-	int		*chunk1;
-	int		*chunk2;
-	int		*chunk3;
-	int		*chunk4;
-	int		*chunk5;
-} t_fake;
 
 int			create_int_array(t_stack_a *a, char *argv);
 int			check_argv(t_stack_a *a);
@@ -82,6 +73,7 @@ int			move_counter(void);
 int			sorting_check(t_stack_a *a, t_stack_b *b);
 int			case_redirection(t_stack_a *a, t_stack_b *b);
 int			biggest_number(t_stack_a *a, t_stack_b *b);
+int			fake_order(t_stack_a *a, t_stack_b *b);
 
 int			number_100(t_stack_a *a, t_stack_b *b);
 int			moving_convenience(t_stack_a *a, t_stack_b *b, int x);
@@ -89,8 +81,17 @@ int			stuff_mover(t_stack_a *a, t_stack_b *b, int	i);
 int			move_down(t_stack_a *a, t_stack_b *b, int	x);
 int			move_up(t_stack_a *a, t_stack_b *b, int	x);
 
-
-
-
+//TESTING SORT FUNCTIONS IN SORT_ALL
+//int number_100(t_stack_a *a, t_stack_b *b);
+int		position_number_b(t_stack_a *a, t_stack_b *b, int pos_a);
+int		moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b);
+int		smallest_usable(int *tmp, int size);
+int		move_down_b(t_stack_a *a, t_stack_b *b, int	y);
+int		move_up_b(t_stack_a *a, t_stack_b *b, int	y);
+int		moving_convenience_b(t_stack_a *a, t_stack_b *b, int value);
+int		smallest_number_modified(t_stack_a *a, t_stack_b *b, int w);
+int 	array_comparator(t_stack_a *a, t_stack_b *b, int x);
+int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int i);
+int	smallest_number_position(t_stack_a *a, t_stack_b *b, int i);
 
 #endif

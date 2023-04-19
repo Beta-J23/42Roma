@@ -6,12 +6,12 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/04/18 15:53:45 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/04/19 21:36:45 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS			= push_swap.c check.c basic_moves.c push_swap_utils.c initializer.c sorting.c number_3.c number_5.c \
-					num_filters.c number_100.c
+					num_filters.c fake_arrays.c sort_all.c
 OBJS			= $(SRCS:.c=.o)
 EXTOBJS			= ft_printf/ft_printf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
 TARGET			= push_swap

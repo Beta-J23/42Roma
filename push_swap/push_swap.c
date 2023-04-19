@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:32 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 18:23:49 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:03:34 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main (int argc, char **argv)
 {
 	t_stack_a a;
 	t_stack_b b;
+	//a.fake_order = NULL;
 
 	initializer(&a, &b);
 	if (array_filler(&a, argv, argc) == 1)

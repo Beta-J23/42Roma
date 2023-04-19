@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:32:35 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 19:19:18 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:34:45 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,42 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	j = 0;
 	z = a->size_of_int;
 	//k = biggest_number(a, b);
-	i = smallest_number(a, b);
+	//i = smallest_number(a, b);
 	//ft_printf("\n\n\nsmallest number is: %d\n\n\n\n", a->array_int_a[i]);
 	//moving_convenience(a, b, i);
-	//trying loop for all
-	//b->array_int_b = malloc(sizeof(char) * a->size_of_int);
-	while (j < z)
+	b->array_int_b = malloc(sizeof(int) * a->size_of_int);
+	//fake_order(a, b);
+	//trying sort with moves prevision (previsione delle mosse)
+	
+	while (j < z - 1)
 	{
-		i = smallest_number(a, b);
-		moving_convenience(a, b, i);
-		pb(a, b);
+		i = smallest_number(a, b); //smallest number + 1 in loop
+		if (moving_convenience(a, b, i) == 0)
+			pb(a, b);
 		j++;
 	}
 	j = 0;
 	
-	while (j < z)
+	while (j < z - 1)
 	{
 		pa(a, b);
 		j++;
 	}
+	//trying loop for all with smallest number passed as parameter
+	/*while (j < z - 1)
+	{
+		i = smallest_number(a, b);
+		if (moving_convenience(a, b, i) == 0)
+			pb(a, b);
+		j++;
+	}
+	j = 0;
+	
+	while (j < z - 1)
+	{
+		pa(a, b);
+		j++;
+	}*/
 	// TRYing sort putting small up big down
 	//while (j < z)
 	//{
@@ -61,22 +78,48 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	//	j++;
 	//}
 	//ft_printf("\n\n\n I is: %d\n\n\n\n", i);
-	//free(b->array_int_b);
+	free(b->array_int_b);
 	return (0);
 }
 
 int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 {
 	(void)b;
+	int		i;
+	int		*tmp;
+	int		y;
 
+	i = 0;
+	tmp = malloc(sizeof(int) * a->size_of_int);
+	//int		z;
+	y = a->size_of_int - x;
+	//z = a->size_of_int - k;
+	
+	
+	if (y <= x)
+		{
+			move_down(a, b, x);
+		}
+		if (x < y)
+		{
+			move_up(a, b, x);
+		}
+
+	return(0);
+}
+/*
+int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
+{
+	(void)b;
 	int		y;
 	//int		z;
 	y = a->size_of_int - x;
 	//z = a->size_of_int - k;
 
+	
 	//if ((k > x) && (z > y))
 	//{
-	if (y < x)
+	if (y <= x)
 	{
 		move_down(a, b, x);
 	}
@@ -85,21 +128,60 @@ int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 		move_up(a, b, x);
 	}
 	//}
-	/*
-	if ((k < x) && (z < y))
-	{
-		//if (z < k)
-		//{
-		//	move_up(a, b, k);
-		//}
-		if (k < z)
-		{
-			move_down(a, b, k);
-		}
-	}*/
+	//
+	//if ((k < x) && (z < y))
+	//{
+	//	//if (z < k)
+	//	//{
+	//	//	move_up(a, b, k);
+	//	//}
+	//	if (k < z)
+	//	{
+	//		move_down(a, b, k);
+	//	}
+	//}
 
 	return(0);
-}
+}*/
+
+/*
+int	smallest_number_modified(t_stack_a *a, t_stack_b *b, int w)
+{
+	(void)b;
+	int		i;
+	int		j;
+	int		z;
+	int		tmp;
+
+	i = 0;
+	j = 0;
+	z = 0;
+	tmp = a->array_int_a[0];
+	while (i < a->size_of_int)
+	{
+		j = 0;
+		z = 0;
+		while (j < a->size_of_int)
+		{
+			tmp = a->array_int_a[i];
+			if (tmp <= a->array_int_a[j])
+				z++;
+			if (z == a->size_of_int)
+			{
+				//ft_printf("numero piu basso trovato e: %d\n", tmp);
+				break;
+			}
+			j++;
+		}
+		if (z == a->size_of_int - w)
+		{
+			//ft_printf("numero piu basso trovato e: %d\n", tmp);
+			break;
+		}
+		i++;
+	}
+	return (i);
+}*/
 
 int	move_down(t_stack_a *a, t_stack_b *b, int	y)
 {

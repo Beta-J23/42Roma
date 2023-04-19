@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:57:38 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 18:29:36 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:06:19 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 		}
 		if (z == a->size_of_int)
 		{
-			ft_printf("numero piu basso trovato e: %d\n", tmp);
+			//ft_printf("numero piu basso trovato e: %d\n", tmp);
 			break;
 		}
 		i++;
