@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:13:13 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/19 23:52:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:32:31 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,13 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	//fake_order(a, b);
 	b->array_int_b = malloc(sizeof(int) * a->size_of_int);
 	//trying sort with moves prevision (previsione delle mosse)
-	b->array_int_b[0] = 0;
+	//b->array_int_b[0] = 0;
 	while (j < z - 1)
 	{
 		//i = smallest_number_modified(a, b, w); //smallest number + 1 in loop
 		//w++;
+		//if (b->array_int_b[0] < b->array_int_b[1])
+		//	sb(b);
 		x = moving_convenience_2(a, b, 0, 0);
 		value = array_comparator(a, b, x);
 		ft_printf("Array comparator value %d\n", value);
@@ -111,14 +113,16 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 	(void)b;
 	int		i;
 	int		j;
-	int		tmp[99];
+	int		*tmp = NULL;
 	int		y;
 	int		z;
 	int		number_a;
 
 	i = 0;
 	j = 0;
-	//tmp = malloc(sizeof(int) * a->size_of_int);
+	//tmp = (int *)malloc(sizeof(int) * a->size_of_int);
+	tmp = ft_calloc(a->size_of_int, sizeof(int));
+	
 	//y = a->size_of_int - pos_a;
 	//z = b->size_of_int - pos_b;
 	
@@ -158,6 +162,7 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 	while (i < a->size_of_int - 1)
 	{
 		pos_a = smallest_number_position(a, b, j);
+		ft_printf ("pos_a = %d\n", pos_a);
 		number_a = smallest_number_mod(a, b, j);
 		pos_b = position_number_b(a, b, number_a);
 		ft_printf("pos b = %d number_a = %d\n", pos_b, number_a);
@@ -179,20 +184,21 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 		i++;
 	}
 	//array print
+	ft_printf("\nJ = %d\n", j);
 	ft_printf("\nI = %d\n", i);
 	ft_printf("tmp is: ");
 	i = 0;
-	while (tmp[i] < a->size_of_int)
+	while (i < a->size_of_int - 1)
 	{
 		ft_printf("%d ", tmp[i]);
 		i++;
 	}
-	ft_printf("\na->size_of_int = %d", a->size_of_int);
-	// trova il numero pu basso dell array TMP
+	// trova il numero pu basso dell array TMP (tmp = somma delle mosse)
 	ft_printf("BEFORE NUMBER TO CHOOSE: tmp[i] = %d, i = %d\n", tmp[i], i);
-	exit(0);
+	//exit(0);
 	number_to_choose = smallest_usable(tmp, i);
 	ft_printf("number to choose = %d\n", number_to_choose);
+	ft_printf("a->size_of_int = %d\n", a->size_of_int - 1);
 	//exit(0);
 	free(tmp);
 	return(number_to_choose);
@@ -261,11 +267,11 @@ int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int i)
 		}
 		if (z == a->size_of_int - i)
 		{
-			//ft_printf("numero piu basso trovato e: %d\n", tmp);
 			break;
 		}
 		i++;
 	}
+	ft_printf("SMALLEST NUMBER MOD numero piu basso trovato e: %d\n", a->array_int_a[i]);
 	return (a->array_int_a[i]);
 }
 
@@ -348,7 +354,7 @@ int	move_up_b(t_stack_a *a, t_stack_b *b, int	x)
 		rb(b);
 		x--;
 	}
-	//ft_printf("MOVING UP");
+	//ft_printf("MOVING UP B, X = %d\n", x);
 	return (0);
 }
 
@@ -393,11 +399,11 @@ int	moving_convenience_b(t_stack_a *a, t_stack_b *b, int x)
 	y = b->size_of_int - x;
 	//z = a->size_of_int - k;
 	
-	if (y <= x)
+	if (y >= x)
 	{
 		move_down_b(a, b, x);
 	}
-	if (x < y)
+	if (x > y)
 	{
 		move_up_b(a, b, x);
 	}

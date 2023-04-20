@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:33:07 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 17:38:30 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:21:24 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,8 +214,8 @@ int		rrb(t_stack_b *b)
 	int		tmp;
 	
 	tmp = b->array_int_b[b->size_of_int - 1];
-	i = b->size_of_int;
-	while (i > 0)
+	i = b->size_of_int - 1;
+	while (i >= 0)
 	{
 		ft_swap (&b->array_int_b[i - 1], &b->array_int_b[i]);
 		i--;

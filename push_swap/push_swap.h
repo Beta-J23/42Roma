@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/19 23:06:38 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:51:35 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ int		move_up_b(t_stack_a *a, t_stack_b *b, int	y);
 int		moving_convenience_b(t_stack_a *a, t_stack_b *b, int value);
 int		smallest_number_modified(t_stack_a *a, t_stack_b *b, int w);
 int 	array_comparator(t_stack_a *a, t_stack_b *b, int x);
-int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int i);
-int	smallest_number_position(t_stack_a *a, t_stack_b *b, int i);
+int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int pos_a);
+int	smallest_number_position(t_stack_a *a, t_stack_b *b, int k, int *array_reserve);
+int	move_b(t_stack_a *a, t_stack_b *b, int x, int value);
+int		biggest_b(t_stack_a *a, t_stack_b *b, int number_a);
+int	biggest_number_b(t_stack_a *a, t_stack_b *b);
 
 #endif
