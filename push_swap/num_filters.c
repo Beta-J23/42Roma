@@ -14,7 +14,7 @@
 
 int		case_redirection(t_stack_a *a, t_stack_b *b)
 {
-	if (a->size_of_int == 3)
+	if (a->size_of_int <= 3)
 	{
 		number_3(a, b);
 		return (0);
@@ -34,12 +34,12 @@ int		case_redirection(t_stack_a *a, t_stack_b *b)
 
 int	smallest_number(t_stack_a *a, t_stack_b *b)
 {
-	(void)b;
 	int		i;
 	int		j;
 	int		z;
 	int		tmp;
 
+	(void)b;
 	i = 0;
 	j = 0;
 	z = 0;
@@ -54,11 +54,11 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 			if (tmp <= a->array_int_a[j])
 				z++;
 			if (z == a->size_of_int)
-				break;
+				break ;
 			j++;
 		}
 		if (z == a->size_of_int)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
@@ -66,12 +66,12 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 
 int	biggest_number(t_stack_a *a, t_stack_b *b)
 {
-	(void)b;
 	int		i;
 	int		j;
 	int		z;
 	int		tmp;
 
+	(void)b;
 	i = 0;
 	j = 0;
 	z = 0;
@@ -88,13 +88,13 @@ int	biggest_number(t_stack_a *a, t_stack_b *b)
 			if (z == a->size_of_int)
 			{
 				ft_printf("numero piu alto trovato e: %d\n", tmp);
-				break;
+				break ;
 			}
 			j++;
 		}
 		if (z == a->size_of_int)
 		{
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -103,12 +103,12 @@ int	biggest_number(t_stack_a *a, t_stack_b *b)
 
 int	biggest_number_b(t_stack_a *a, t_stack_b *b)
 {
-	(void)a;
 	int		i;
 	int		j;
 	int		z;
 	int		tmp;
 
+	(void)a;
 	i = 0;
 	j = 0;
 	z = 0;
@@ -123,11 +123,11 @@ int	biggest_number_b(t_stack_a *a, t_stack_b *b)
 			if (tmp >= b->array_int_b[j])
 				z++;
 			if (z == b->size_of_int)
-				break;
+				break ;
 			j++;
 		}
 		if (z == b->size_of_int)
-			break;
+			break ;
 		i++;
 	}
 	return (i);

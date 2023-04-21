@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-int atoi_limit(long long nb)
+int	atoi_limit(long long nb)
 {
 	if ((nb < -2147483648) || (nb > 2147483647))
 	{
 		write(1, "int limit overflowed!\n", 23);
 		exit (0);
 	}
-	else 
+	else
 		return ((int)nb);
 }
 
-int ft_atoi_mod(char *str)
+int	ft_atoi_mod(char *str)
 {
 	int			i;
 	int			var;
@@ -48,7 +48,7 @@ int ft_atoi_mod(char *str)
 		intero = intero * 10 + (str[i] - 48);
 		i++;
 	}
-	return(atoi_limit(intero * var));
+	return (atoi_limit(intero * var));
 }
 
 void	ft_swap(int *a, int *b)
@@ -60,10 +60,10 @@ void	ft_swap(int *a, int *b)
 	*b = c;
 }
 
-void array_printer(t_stack_a *a, t_stack_b *b)
+void	array_printer(t_stack_a *a, t_stack_b *b)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	ft_printf("\nnew array A is: ");
 	while (i < a->size_of_int)

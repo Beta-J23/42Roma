@@ -34,7 +34,7 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	x = 0;
 	value = 0;
 	z = a->size_of_int;
-	b->array_int_b = malloc(sizeof(int) * a->size_of_int);
+	b->array_int_b = malloc(sizeof(int) * (b->size_of_int));
 	//sorting with move prevision, possibili implementazioni:
 	//- see if array already sorted.
 	//- se numero di mosse e' uguale prediligi nummero piu piccolo per pb.
@@ -65,6 +65,7 @@ int number_100(t_stack_a *a, t_stack_b *b)
 		pa(a, b);
 		j++;
 	}
+	ft_printf("test double free\n");
 	//free(b->array_int_b);
 	return (0);
 }

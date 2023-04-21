@@ -21,10 +21,8 @@ int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 int	moving_convenience_b(t_stack_a *a, t_stack_b *b, int x)
 {
 	(void)a;
-	int		i;
 	int		y;
 
-	i = 0;
 	y = b->size_of_int - x;
 	if (y <= x)
 	{
@@ -40,16 +38,10 @@ int	moving_convenience_b(t_stack_a *a, t_stack_b *b, int x)
 
 int	move_b(t_stack_a *a, t_stack_b *b, int x, int value)
 {
-	(void)a;
-	int		i;
 	int		y;
 
-	i = 0;
+	(void)a;
 	y = b->size_of_int - x;
-	// se pre_b e'maggiore di tutti, e il piu grande di b si trova alla fine.
-	////ft_printf("VALUE A = %d\n", value);
-	/////ft_printf("VALUE B = %d\n", b->array_int_b[b->size_of_int - 1]);
-	/////ft_printf("BIG B POS = %d\n", biggest_b(a, b, b->array_int_b[b->size_of_int - 1]));	
 	if ((value > b->array_int_b[b->size_of_int - 1]) && (biggest_b(a, b, b->array_int_b[b->size_of_int - 1]) == b->size_of_int - 1))
 	{
 		///////ft_printf("\n\n\n\n\n\nDFEFFRSCVGFDT BOOOOOOOOOOOOOO IF\n\n\n\n\n");

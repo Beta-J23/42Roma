@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= push_swap.c check.c basic_moves.c push_swap_utils.c initializer.c sorting.c number_3.c number_5.c \
-					num_filters.c fake_arrays.c sort_light.c looped_moves.c moving_convenience.c
+SRCS			= push_swap.c check.c basic_moves_p.c basic_moves_r.c basic_moves_rr.c basic_moves_s.c push_swap_utils.c initializer.c sorting.c \
+					number_3.c number_5.c num_filters.c fake_arrays.c sort_push.c looped_moves.c moving_convenience.c 
 OBJS			= $(SRCS:.c=.o)
 EXTOBJS			= ft_printf/ft_printf.a ft_printf/*.o get_next_line/get_next_line.a get_next_line/*.o
 TARGET			= push_swap
@@ -29,7 +29,7 @@ all: $(TARGET)
 $(NAME) : all
 
 $(TARGET):
-	@$(CC) $(SRCS) $(FT_PRINTF) $(LIBFT) -o $(TARGET)
+	@$(CC) $(SRCS) $(CFLAGS) $(FT_PRINTF) $(LIBFT) -o $(TARGET)
 	@printf "Ready.\n"
 
 clean:

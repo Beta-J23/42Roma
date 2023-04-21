@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 int		bubble(t_stack_a *a, t_stack_b *b)
 {
 	(void)b;
@@ -29,24 +29,22 @@ int		bubble(t_stack_a *a, t_stack_b *b)
 		i++; 
 	}
 	return (0);
-}
+}*/
 
-int		sorting_check(t_stack_a *a, t_stack_b *b)
+int	sorting_check(t_stack_a *a, t_stack_b *b)
 {
-	(void)b;
 	int		i;
-	
+
+	(void)b;
 	i = 0;
 	while (i < a->size_of_int - 1)
 	{
 		if (a->array_int_a[i] > a->array_int_a[i + 1])
-		{
-			break;
-		}	
-		i++; 
+			break ;
+		i++;
 	}
 	if (i != a->size_of_int - 1)
-		return(1);
+		return (1);
 	else
 		return (0);
 }
