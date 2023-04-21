@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:32:35 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/19 21:34:45 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:24:17 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 {
 	(void)b;
 	int		i;
-	int		*tmp;
+	//int		*tmp;
 	int		y;
 
 	i = 0;
-	tmp = malloc(sizeof(int) * a->size_of_int);
+	//tmp = malloc(sizeof(int) * a->size_of_int);
 	//int		z;
 	y = a->size_of_int - x;
 	//z = a->size_of_int - k;

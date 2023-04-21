@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_few.c                                         :+:      :+:    :+:   */
+/*   sort_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 12:44:58 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 12:34:32 by alpelliz         ###   ########.fr       */
+/*   Created: 2023/04/21 11:57:17 by alpelliz          #+#    #+#             */
+/*   Updated: 2023/04/21 12:23:31 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int number_100(t_stack_a *a, t_stack_b *b)
 		value = a->array_int_a[x];
 		pre_b = position_number_b(a, b, value); // la posizione che ricoprira'in B
 		//value = array_comparator(a, b, x);
-		ft_printf("\nArray comparator value %d\n", value);
-		ft_printf("\npre_b %d\n", pre_b);
+		///////ft_printf("\nArray comparator value %d\n", value);
+		///////ft_printf("\npre_b %d\n", pre_b);
 		//moving_convenience_b(a, b, pre_b);
 		move_b(a, b, pre_b, value);
 		if (moving_convenience(a, b, x) == 0)
@@ -60,7 +60,8 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	}
 	j = 0;
 	biggest = biggest_number_b(a, b);
-	ft_printf("pre moving. biggest = %d\n", biggest);
+    ////ft_printf("biggest_number = %d\n", b->array_int_b[biggest]);
+	/////ft_printf("pre moving. biggest = %d\n", biggest);
 	moving_convenience_b(a, b , biggest);
 	while (j < z)
 	{
@@ -203,8 +204,8 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 		if (pos_b <= z)
 			minimum_b = pos_b;
 		tmp[i] = (minimum_a + minimum_b);
-		ft_printf("number_a = %d, minimum A = %d, minimum B = %d, i = %d, tmp[i] = %d, pos_b %d\n", number_a, minimum_a, minimum_b, i, tmp[i], pos_b);
-		array_printer(a, b);
+		//////////ft_printf("number_a = %d, minimum A = %d, minimum B = %d, i = %d, tmp[i] = %d, pos_b %d\n", number_a, minimum_a, minimum_b, i, tmp[i], pos_b);
+		//////////array_printer(a, b);
 		pos_a++;
 		j++;
 		i++;
@@ -212,18 +213,18 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 	//array print
 	//ft_printf("\nJ = %d\n", j);
 	//ft_printf("\nI = %d\n", i);
-	ft_printf("tmp is: ");
+	////////ft_printf("tmp is: ");
 	i = 0;
 	while (i < a->size_of_int)
 	{
-		ft_printf("%d ", tmp[i]);
+		///////ft_printf("%d ", tmp[i]);
 		i++;
 	}
 	// trova il numero pu basso dell array TMP (tmp = somma delle mosse)
 	//ft_printf("BEFORE NUMBER TO CHOOSE: tmp[i] = %d, i = %d\n", tmp[i], i);
-	number_to_choose = smallest_usable(tmp, i); //smallest usable returns tmp[i] PROBABILE ERRORE!!!!! QUESTO E IL NUMERO DI MOSSE MINIMO NON IL VALORE!!!!!
-	ft_printf("number to choose = %d\n", a->array_int_a[number_to_choose]);
-	ft_printf("a->size_of_int = %d\n", a->size_of_int);
+	number_to_choose = smallest_usable(tmp, a->size_of_int); //smallest usable returns tmp[i] PROBABILE ERRORE!!!!! QUESTO E IL NUMERO DI MOSSE MINIMO NON IL VALORE!!!!!
+	/////ft_printf("number to choose = %d\n", a->array_int_a[number_to_choose]);
+	/////ft_printf("a->size_of_int = %d\n", a->size_of_int);
 	free(tmp);
 	free(array_reserve);
 	return(number_to_choose);
@@ -307,7 +308,7 @@ int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int pos_a)
 		}
 		i++;
 	}
-	ft_printf("SMALLEST NUMBER MOD numero piu basso trovato e: %d\n", a->array_int_a[i]);
+	//////////ft_printf("SMALLEST NUMBER MOD numero piu basso trovato e: %d\n", a->array_int_a[i]);
 	return (a->array_int_a[i]);
 }
 
@@ -340,7 +341,7 @@ int	smallest_usable(int *tmp, int size)
 		}
 		i++;
 	}
-	ft_printf("\n\n\nIN SMALLEST USABLE tmp[i]: %d, i = %d\n\n\n", tmp[i], i);
+	//////ft_printf("\n\n\nIN SMALLEST USABLE tmp[i]: %d, i = %d\n\n\n", tmp[i], i);
 	return (i); // FORSE MEGLIO TORNARE L'INDICE 
 }
 
@@ -404,12 +405,12 @@ int	move_b(t_stack_a *a, t_stack_b *b, int x, int value)
 	y = b->size_of_int - x;
 	//z = a->size_of_int - k;
 	// se pre_b e'maggiore di tutti, e il piu grande di b si trova alla fine.
-	ft_printf("VALUE A = %d\n", value);
-	ft_printf("VALUE B = %d\n", b->array_int_b[b->size_of_int - 1]);
-	ft_printf("BIG B POS = %d\n", biggest_b(a, b, b->array_int_b[b->size_of_int - 1]));	
+	////ft_printf("VALUE A = %d\n", value);
+	/////ft_printf("VALUE B = %d\n", b->array_int_b[b->size_of_int - 1]);
+	/////ft_printf("BIG B POS = %d\n", biggest_b(a, b, b->array_int_b[b->size_of_int - 1]));	
 	if ((value > b->array_int_b[b->size_of_int - 1]) && (biggest_b(a, b, b->array_int_b[b->size_of_int - 1]) == b->size_of_int - 1))
 	{
-		ft_printf("\n\n\n\n\n\nDFEFFRSCVGFDT BOOOOOOOOOOOOOO IF\n\n\n\n\n");
+		///////ft_printf("\n\n\n\n\n\nDFEFFRSCVGFDT BOOOOOOOOOOOOOO IF\n\n\n\n\n");
 		rrb(b);
 	}
 	if (y <= x)

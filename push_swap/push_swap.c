@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:32 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/19 17:03:34 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:55:00 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int main (int argc, char **argv)
 	if (array_filler(&a, argv, argc) == 1)
 		return (1);
 	check_argv(&a);
-	b.array_int_b = malloc(sizeof(int) * 6);
-	b.size_of_int = 0;
+	//b.array_int_b = malloc(sizeof(int) * 6);
+	//b.size_of_int = 0;
 	case_redirection(&a, &b);
 	//ft_printf("Total moves: %d\n", a.counter);
 

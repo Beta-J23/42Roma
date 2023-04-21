@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:57:38 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/20 21:51:14 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:15:16 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		case_redirection(t_stack_a *a, t_stack_b *b)
 		number_5(a, b);
 		return (0);
 	}
-    if ((a->size_of_int == 100) || (a->size_of_int == 10))
+    if ((a->size_of_int == 100) || (a->size_of_int == 10) ||  (a->size_of_int == 500))
 	{
 		ft_printf("entered in 100");
 		number_100(a, b);
@@ -131,7 +131,7 @@ int	biggest_number_b(t_stack_a *a, t_stack_b *b)
 				z++;
 			if (z == b->size_of_int)
 			{
-				ft_printf("numero piu alto trovato e: %d\n", tmp);
+				//ft_printf("numero piu alto trovato e: %d\n", tmp);
 				break;
 			}
 			j++;
