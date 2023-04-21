@@ -54,6 +54,15 @@ int	move_b(t_stack_a *a, t_stack_b *b, int x, int value)
 	{
 		///////ft_printf("\n\n\n\n\n\nDFEFFRSCVGFDT BOOOOOOOOOOOOOO IF\n\n\n\n\n");
 		rrb(b);
+		//move_down_b(a, b, biggest_b(a, b, b->array_int_b[b->size_of_int - 1]));
+	}
+	if (value > b->array_int_b[biggest_number_b(a, b)])
+	{
+		while (b->array_int_b[0] != b->array_int_b[biggest_number_b(a, b)])
+		{
+			rrb(b);
+		}
+		//ft_printf("BIG B = %d\n", b->array_int_b[biggest_number_b(a, b)]);
 	}
 	if (y <= x)
 	{

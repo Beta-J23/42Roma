@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:00:31 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 14:33:46 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:26:05 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 	}
 	if (argc == 2)
 	{
-		a->array_a = (char *)ft_calloc(ft_strlen(argv[1]) - 1, sizeof(char));
+		a->array_a = (char *)ft_calloc(ft_strlen(argv[1]), sizeof(char));
 		while (argv[1][i] != '\0')
 		{
 			a->array_a[i] = argv[1][i];
@@ -47,19 +47,21 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 	{
 		//free (a->array_a);
 		i = 1;
-		ft_printf("TEST\n");
 		j = 0;
 		while (i < argc)
 		{
-			while (argv[i][j] != '\0')
+			int k = 0;
+			while (argv[i][k] != '\0')
 			{
 				j++;
+				k++;
+				//ft_printf("J = %d\n", j);
 			}
 			j++;
 			i++;
 		}
-		a->array_a = (char *)ft_calloc(j + 1, sizeof(char));
-		//ft_printf ("J = %d\n", j);
+		// ft_printf ("J FINE CICLO = %d\n", j);
+		a->array_a = (char *)ft_calloc(j, sizeof(char));
 		j = 0;
 		i = 1;
 		while (i < argc)
@@ -84,7 +86,7 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 /* check_argv: check if: argv is a number; it's double, calculate size, convert array to int, determine Size jumping spaces,*/
 int		check_argv(t_stack_a *a)
 {
-	ft_printf("array di z = %s\n", a->array_a);
+	//ft_printf("array di z = %s\n", a->array_a);
 	int		i;
 
 	int		z;

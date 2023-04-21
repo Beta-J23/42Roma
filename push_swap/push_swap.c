@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:32 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 15:24:18 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:17:29 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int main (int argc, char **argv)
 		return (1);
 	check_argv(&a);
 	case_redirection(&a, &b);
-	ft_printf("TEST\n");
-	array_printer(&a, &b);
+	//array_printer(&a, &b);
 	free(a.array_a);
 	free(a.array_int_a);
+	//free(b.array_int_b);
 	return (0);
 }

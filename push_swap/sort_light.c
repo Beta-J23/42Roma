@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:57:17 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 15:35:31 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:26:33 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int number_100(t_stack_a *a, t_stack_b *b)
 	/////ft_printf("pre moving. biggest = %d\n", biggest);
 	//move_b(a, b, pre_b, biggest);
 	moving_convenience_b(a, b , biggest);
+	//array_printer(a, b);
 	while (j < z)
 	{
 		pa(a, b);
@@ -196,8 +197,8 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 		if (pos_b <= z)
 			minimum_b = pos_b;
 		tmp[i] = (minimum_a + minimum_b);
-		//////////ft_printf("number_a = %d, minimum A = %d, minimum B = %d, i = %d, tmp[i] = %d, pos_b %d\n", number_a, minimum_a, minimum_b, i, tmp[i], pos_b);
-		//////////array_printer(a, b);
+		//ft_printf("number_a = %d, minimum A = %d, minimum B = %d, i = %d, tmp[i] = %d, pos_b %d\n", number_a, minimum_a, minimum_b, i, tmp[i], pos_b);
+		//array_printer(a, b);
 		pos_a++;
 		j++;
 		i++;

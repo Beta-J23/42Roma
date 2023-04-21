@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:33:07 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/20 21:21:24 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:52:01 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		sb(t_stack_b *b)
 {
 	ft_swap(&b->array_int_b[0], &b->array_int_b[1]);
 	ft_printf("sb\n");
-	//a->counter++;
 	return (0);
 }
 
@@ -37,7 +36,6 @@ int		ss(t_stack_a *a, t_stack_b *b)
 	ft_swap(&a->array_int_a[0], &a->array_int_a[1]);
 	//sb copy
 	ft_swap(&b->array_int_b[0], &b->array_int_b[1]);
-	a->counter++;
 	ft_printf("ss\n");
 	return (0);
 }
@@ -111,7 +109,6 @@ int		pb(t_stack_a *a, t_stack_b *b)
 		ft_swap (&a->array_int_a[i], &a->array_int_a[i + 1]);
 		i++;
 	}
-	a->counter++;
 	a->array_int_a[a->size_of_int - 1] = tmp;
 	// end of ra
 	a->size_of_int--;
@@ -195,8 +192,8 @@ int		rra(t_stack_a *a)
 	int		tmp;
 	
 	tmp = a->array_int_a[a->size_of_int - 1];
-	i = a->size_of_int;
-	while (i > 0)
+	i = a->size_of_int - 1;
+	while (i >= 0)
 	{
 		ft_swap (&a->array_int_a[i - 1], &a->array_int_a[i]);
 		i--;
