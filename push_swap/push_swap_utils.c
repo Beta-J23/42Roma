@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:44:43 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/18 18:29:22 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:16:26 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,3 @@ void array_printer(t_stack_a *a, t_stack_b *b)
 	}
 	ft_printf("\n");
 }
-/*
-int		case_redirection(t_stack_a *a, t_stack_b *b)
-{
-	if (a->size_of_int == 3)
-	{
-		number_3(a, b);
-		return (0);
-	}
-	if (a->size_of_int == 5)
-	{
-		number_5(a, b);
-		return (0);
-	}
-	return (0);
-}*/
-
-/*
-int		move_counter(void)
-{
-	int		x;
-
-	x++;
-	return (x);
-}*/

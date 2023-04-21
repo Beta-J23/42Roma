@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:28:20 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/20 17:29:01 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:24:58 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	move_up(t_stack_a *a, t_stack_b *b, int	x)
 		ra(a);
 		x--;
 	}
-	//ft_printf("MOVING UP");
 	return (0);
 }
 
@@ -34,7 +33,6 @@ int	move_up_b(t_stack_a *a, t_stack_b *b, int	x)
 		rb(b);
 		x--;
 	}
-	//ft_printf("MOVING UP B, X = %d\n", x);
 	return (0);
 }
 
@@ -47,7 +45,6 @@ int	move_down(t_stack_a *a, t_stack_b *b, int	y)
 		rra(a);
 		y++;
 	}
-	//ft_printf("MOVING DOWN");
 	return (0);
 }
 
@@ -60,6 +57,5 @@ int	move_down_b(t_stack_a *a, t_stack_b *b, int	y)
 		rrb(b);
 		y++;
 	}
-	//ft_printf("MOVING DOWN");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:57:38 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 12:15:16 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:15:39 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		case_redirection(t_stack_a *a, t_stack_b *b)
 	}
     if ((a->size_of_int == 100) || (a->size_of_int == 10) ||  (a->size_of_int == 500))
 	{
-		ft_printf("entered in 100");
 		number_100(a, b);
 		return (0);
 	}
@@ -55,17 +54,11 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 			if (tmp <= a->array_int_a[j])
 				z++;
 			if (z == a->size_of_int)
-			{
-				//ft_printf("numero piu basso trovato e: %d\n", tmp);
 				break;
-			}
 			j++;
 		}
 		if (z == a->size_of_int)
-		{
-			//ft_printf("numero piu basso trovato e: %d\n", tmp);
 			break;
-		}
 		i++;
 	}
 	return (i);
@@ -130,16 +123,11 @@ int	biggest_number_b(t_stack_a *a, t_stack_b *b)
 			if (tmp >= b->array_int_b[j])
 				z++;
 			if (z == b->size_of_int)
-			{
-				//ft_printf("numero piu alto trovato e: %d\n", tmp);
 				break;
-			}
 			j++;
 		}
 		if (z == b->size_of_int)
-		{
 			break;
-		}
 		i++;
 	}
 	return (i);

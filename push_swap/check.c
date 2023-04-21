@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:00:31 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 12:54:34 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:33:46 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 	}
 	if (argc > 2)
 	{
+		//free (a->array_a);
 		i = 1;
+		ft_printf("TEST\n");
 		j = 0;
 		while (i < argc)
 		{
@@ -56,7 +58,6 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 			j++;
 			i++;
 		}
-		free (a->array_a);
 		a->array_a = (char *)ft_calloc(j + 1, sizeof(char));
 		//ft_printf ("J = %d\n", j);
 		j = 0;

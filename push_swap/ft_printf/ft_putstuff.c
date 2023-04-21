@@ -69,7 +69,7 @@ int	ft_decimal_count_uns(unsigned int nb)
 	if (nb < 0)
 	{
 		i++;
-		nb *= -1;
+	 	nb *= -1;
 	}
 	if (nb == 0)
 		return (1);
