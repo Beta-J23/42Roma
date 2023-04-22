@@ -1,3 +1,4 @@
+
 #include "push_swap.h"
 
 //appunti per ulteriori implementazioni
@@ -21,7 +22,7 @@ int	number_100(t_stack_a *a, t_stack_b *b)
 	x = 0;
 	value = 0;
 	z = a->size_of_int;
-	b->array_int_b = malloc(sizeof(int) * (b->size_of_int));
+	b->array_int_b = malloc(sizeof(int) * (a->size_of_int));
 	while (j < z)
 	{
 		x = moving_convenience_2(a, b, 0, 0);
@@ -40,7 +41,6 @@ int	number_100(t_stack_a *a, t_stack_b *b)
 		pa(a, b);
 		j++;
 	}
-	ft_printf("test double free\n");
 	//free(b->array_int_b);
 	return (0);
 }
@@ -91,7 +91,6 @@ int	moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b)
 	int		minimum_b;
 	int		number_to_choose;
 
-	(void)b;
 	i = 0;
 	j = 0;
 	tmp = ft_calloc(a->size_of_int, sizeof(int));
@@ -143,9 +142,7 @@ int	smallest_usable(int *tmp, int size)
 			j++;
 		}
 		if (z == size)
-		{
 			break ;
-		}
 		i++;
 	}
 	return (i);
@@ -165,38 +162,3 @@ int	biggest_b(t_stack_a *a, t_stack_b *b, int num)
 	}
 	return (i - 1);
 }
-
-// Return il valore dell'array nella posizione cercata.
-/*
-int	smallest_number_mod(t_stack_a *a, t_stack_b *b, int pos_a)
-{
-	(void)b;
-	int		i;
-	int		j;
-	int		z;
-
-	i = 0;
-	j = 0;
-	z = 0;
-	while (i < a->size_of_int)
-	{
-		j = 0;
-		z = 0;
-		while (j < a->size_of_int)
-		{
-			if (a->array_int_a[i] <= a->array_int_a[j])
-				z++;
-			if (z == a->size_of_int - pos_a)
-			{
-				break;
-			}
-			j++;
-		}
-		if (z == a->size_of_int - pos_a)
-		{
-			break;
-		}
-		i++;
-	}
-	return (a->array_int_a[i]);
-}*/

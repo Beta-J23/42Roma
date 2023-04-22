@@ -19,7 +19,7 @@ int	number_5(t_stack_a *a, t_stack_b *b)
 	(void)b;
 	i = 0;
 	i = smallest_number(a, b);
-	//b->array_int_b = malloc(sizeof(int) * 6);
+	b->array_int_b = malloc(sizeof(int) * 6);
 	pre_pb_5(a, b, i);
 	pb(a, b);
 	i = 0;
@@ -33,8 +33,7 @@ int	number_5(t_stack_a *a, t_stack_b *b)
 	pa(a, b);
 	ra(a);
 	pa(a, b);
-	array_printer(a, b);
-	//free(b->array_int_b);
+	free(b->array_int_b);
 	return (0);
 }
 

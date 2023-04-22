@@ -1,10 +1,11 @@
+
 #include "push_swap.h"
 
 int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 {
-	(void)b;
 	int		y;
 
+	(void)b;
 	y = a->size_of_int - x;
 	if (y <= x)
 	{
@@ -14,15 +15,14 @@ int	moving_convenience(t_stack_a *a, t_stack_b *b, int x)
 	{
 		move_up(a, b, x);
 	}
-
-	return(0);
+	return (0);
 }
 
 int	moving_convenience_b(t_stack_a *a, t_stack_b *b, int x)
 {
-	(void)a;
 	int		y;
 
+	(void)a;
 	y = b->size_of_int - x;
 	if (y <= x)
 	{
@@ -32,8 +32,7 @@ int	moving_convenience_b(t_stack_a *a, t_stack_b *b, int x)
 	{
 		move_up_b(a, b, x);
 	}
-
-	return(0);
+	return (0);
 }
 
 int	move_b(t_stack_a *a, t_stack_b *b, int x, int value)
@@ -42,28 +41,18 @@ int	move_b(t_stack_a *a, t_stack_b *b, int x, int value)
 
 	(void)a;
 	y = b->size_of_int - x;
-	if ((value > b->array_int_b[b->size_of_int - 1]) && (biggest_b(a, b, b->array_int_b[b->size_of_int - 1]) == b->size_of_int - 1))
-	{
-		///////ft_printf("\n\n\n\n\n\nDFEFFRSCVGFDT BOOOOOOOOOOOOOO IF\n\n\n\n\n");
+	if ((value > b->array_int_b[b->size_of_int - 1])
+		&& (biggest_b(a, b, b->array_int_b[b->size_of_int - 1])
+			== b->size_of_int - 1))
 		rrb(b);
-		//move_down_b(a, b, biggest_b(a, b, b->array_int_b[b->size_of_int - 1]));
-	}
 	if (value > b->array_int_b[biggest_number_b(a, b)])
 	{
 		while (b->array_int_b[0] != b->array_int_b[biggest_number_b(a, b)])
-		{
 			rrb(b);
-		}
-		//ft_printf("BIG B = %d\n", b->array_int_b[biggest_number_b(a, b)]);
 	}
 	if (y <= x)
-	{
 		move_down_b(a, b, x);
-	}
 	if (x < y)
-	{
 		move_up_b(a, b, x);
-	}
-
-	return(0);
+	return (0);
 }

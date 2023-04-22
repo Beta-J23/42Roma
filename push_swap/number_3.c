@@ -15,7 +15,6 @@
 int	number_3(t_stack_a *a, t_stack_b *b)
 {
 	(void)b;
-
 	if (sorting_check(a, b) == 0)
 		return (0);
 	if (a->size_of_int == 2)
@@ -47,7 +46,7 @@ int	number_3_helper_1(t_stack_a *a, t_stack_b *b)
 		sa(a);
 		rra(a);
 		if (sorting_check(a, b) == 0)
-			return (1);	
+			return (1);
 	}
 	if ((a->array_int_a[0] > a->array_int_a[1])
 		&& (a->array_int_a[1] < a->array_int_a[2])
@@ -55,7 +54,7 @@ int	number_3_helper_1(t_stack_a *a, t_stack_b *b)
 	{
 		ra(a);
 		if (sorting_check(a, b) == 0)
-			return (1);	
+			return (1);
 	}
 	return (0);
 }
@@ -69,7 +68,7 @@ int	number_3_helper_2(t_stack_a *a, t_stack_b *b)
 		sa(a);
 		ra(a);
 		if (sorting_check(a, b) == 0)
-			return (1);	
+			return (1);
 	}
 	if ((a->array_int_a[0] < a->array_int_a[1])
 		&& (a->array_int_a[1] > a->array_int_a[2])
@@ -77,7 +76,7 @@ int	number_3_helper_2(t_stack_a *a, t_stack_b *b)
 	{
 		rra(a);
 		if (sorting_check(a, b) == 0)
-			return (1);	
+			return (1);
 	}
 	return (0);
 }

@@ -16,7 +16,7 @@ int	atoi_limit(long long nb)
 {
 	if ((nb < -2147483648) || (nb > 2147483647))
 	{
-		write(1, "int limit overflowed!\n", 23);
+		write(1, "Error: int limit overflowed!\n", 30);
 		exit (0);
 	}
 	else

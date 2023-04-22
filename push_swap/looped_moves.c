@@ -12,10 +12,9 @@
 
 #include "push_swap.h"
 
-int	move_up(t_stack_a *a, t_stack_b *b, int	x)
+int	move_up(t_stack_a *a, t_stack_b *b, int x)
 {
 	(void)b;
-	
 	while (x > 0)
 	{
 		ra(a);
@@ -24,10 +23,9 @@ int	move_up(t_stack_a *a, t_stack_b *b, int	x)
 	return (0);
 }
 
-int	move_up_b(t_stack_a *a, t_stack_b *b, int	x)
+int	move_up_b(t_stack_a *a, t_stack_b *b, int x)
 {
 	(void)a;
-	
 	while (x > 0)
 	{
 		rb(b);
@@ -36,10 +34,9 @@ int	move_up_b(t_stack_a *a, t_stack_b *b, int	x)
 	return (0);
 }
 
-int	move_down(t_stack_a *a, t_stack_b *b, int	y)
+int	move_down(t_stack_a *a, t_stack_b *b, int y)
 {
 	(void)b;
-
 	while (y < a->size_of_int)
 	{
 		rra(a);
@@ -48,10 +45,9 @@ int	move_down(t_stack_a *a, t_stack_b *b, int	y)
 	return (0);
 }
 
-int	move_down_b(t_stack_a *a, t_stack_b *b, int	y)
+int	move_down_b(t_stack_a *a, t_stack_b *b, int y)
 {
 	(void)a;
-
 	while (y < b->size_of_int)
 	{
 		rrb(b);

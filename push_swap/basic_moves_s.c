@@ -21,7 +21,7 @@ int	sa(t_stack_a *a)
 	return (0);
 }
 
-// sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements
+// sb (swap b): Swap the first 2 elements at the top of stack b.
 int	sb(t_stack_b *b)
 {
 	ft_swap(&b->array_int_b[0], &b->array_int_b[1]);
@@ -37,4 +37,3 @@ int	ss(t_stack_a *a, t_stack_b *b)
 	ft_printf("ss\n");
 	return (0);
 }
-

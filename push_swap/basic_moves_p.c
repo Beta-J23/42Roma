@@ -17,7 +17,7 @@ int	pa(t_stack_a *a, t_stack_b *b)
 		i--;
 	}
 	pa_helper(a, b, i, tmp);
-    return (0);
+	return (0);
 }
 
 int	pa_helper(t_stack_a *a, t_stack_b *b, int i, int tmp)
@@ -38,7 +38,7 @@ int	pa_helper(t_stack_a *a, t_stack_b *b, int i, int tmp)
 	return (0);
 }
 
-//pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+//pb Take the first element at the top of a and put it at the top of b.
 int	pb(t_stack_a *a, t_stack_b *b)
 {
 	int		i;
@@ -53,8 +53,8 @@ int	pb(t_stack_a *a, t_stack_b *b)
 		ft_swap (&b->array_int_b[i - 1], &b->array_int_b[i]);
 		i--;
 	}
-    pb_helper(a, b, i , tmp);
-    return (0);
+	pb_helper(a, b, i, tmp);
+	return (0);
 }
 
 int	pb_helper(t_stack_a *a, t_stack_b *b, int i, int tmp)

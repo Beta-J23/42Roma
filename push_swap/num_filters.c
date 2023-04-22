@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		case_redirection(t_stack_a *a, t_stack_b *b)
+int	case_redirection(t_stack_a *a, t_stack_b *b)
 {
 	if (a->size_of_int <= 3)
 	{
@@ -24,7 +24,7 @@ int		case_redirection(t_stack_a *a, t_stack_b *b)
 		number_5(a, b);
 		return (0);
 	}
-    if (a->size_of_int > 5)
+	if (a->size_of_int > 5)
 	{
 		number_100(a, b);
 		return (0);
@@ -36,14 +36,21 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 {
 	int		i;
 	int		j;
-	int		z;
 	int		tmp;
 
 	(void)b;
 	i = 0;
 	j = 0;
-	z = 0;
 	tmp = a->array_int_a[0];
+	i = (smallest_number_helper(a, i, j, tmp));
+	return (i);
+}
+
+int	smallest_number_helper(t_stack_a *a, int i, int j, int tmp)
+{
+	int		z;
+
+	z = 0;
 	while (i < a->size_of_int)
 	{
 		j = 0;
@@ -58,75 +65,6 @@ int	smallest_number(t_stack_a *a, t_stack_b *b)
 			j++;
 		}
 		if (z == a->size_of_int)
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-int	biggest_number(t_stack_a *a, t_stack_b *b)
-{
-	int		i;
-	int		j;
-	int		z;
-	int		tmp;
-
-	(void)b;
-	i = 0;
-	j = 0;
-	z = 0;
-	tmp = a->array_int_a[0];
-	while (i < a->size_of_int)
-	{
-		j = 0;
-		z = 0;
-		while (j < a->size_of_int)
-		{
-			tmp = a->array_int_a[i];
-			if (tmp >= a->array_int_a[j])
-				z++;
-			if (z == a->size_of_int)
-			{
-				ft_printf("numero piu alto trovato e: %d\n", tmp);
-				break ;
-			}
-			j++;
-		}
-		if (z == a->size_of_int)
-		{
-			break ;
-		}
-		i++;
-	}
-	return (i);
-}
-
-int	biggest_number_b(t_stack_a *a, t_stack_b *b)
-{
-	int		i;
-	int		j;
-	int		z;
-	int		tmp;
-
-	(void)a;
-	i = 0;
-	j = 0;
-	z = 0;
-	tmp = b->array_int_b[0];
-	while (i < b->size_of_int)
-	{
-		j = 0;
-		z = 0;
-		while (j < b->size_of_int)
-		{
-			tmp = b->array_int_b[i];
-			if (tmp >= b->array_int_b[j])
-				z++;
-			if (z == b->size_of_int)
-				break ;
-			j++;
-		}
-		if (z == b->size_of_int)
 			break ;
 		i++;
 	}
