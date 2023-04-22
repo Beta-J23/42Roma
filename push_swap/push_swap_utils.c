@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:44:43 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 15:16:26 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:51:42 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	atoi_limit(long long nb)
 {
 	if ((nb < -2147483648) || (nb > 2147483647))
 	{
-		write(1, "Error: int limit overflowed!\n", 30);
+		write(2, "Error\n", 6);
 		exit (0);
 	}
 	else

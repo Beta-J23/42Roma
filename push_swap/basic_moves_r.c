@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   basic_moves_r.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/22 11:01:14 by alpelliz          #+#    #+#             */
+/*   Updated: 2023/04/22 15:41:33 by alpelliz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -51,7 +62,6 @@ int	rr(t_stack_a *a, t_stack_b *b)
 		ft_swap (&a->array_int_a[i], &a->array_int_a[i + 1]);
 		i++;
 	}
-	a->counter++;
 	a->array_int_a[a->size_of_int - 1] = tmp;
 	tmp = b->array_int_b[0];
 	i = 0;

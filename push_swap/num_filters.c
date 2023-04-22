@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:57:38 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 18:03:25 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 11:59:56 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	case_redirection(t_stack_a *a, t_stack_b *b)
 		number_3(a, b);
 		return (0);
 	}
-	if (a->size_of_int == 5)
+	if (a->size_of_int <= 5)
 	{
 		number_5(a, b);
 		return (0);

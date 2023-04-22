@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:46:04 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/21 15:23:26 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 12:01:39 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	pre_pb_5(t_stack_a *a, t_stack_b *b, int x)
 	{
 		ra(a);
 		sa(a);
-		array_printer(a, b);
 		return (2);
 	}
 	return (pre_pb_5_helper(a, b, x));

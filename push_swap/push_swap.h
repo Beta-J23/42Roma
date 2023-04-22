@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/20 21:51:35 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:27:44 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int			biggest_number_b_helper(t_stack_b *b, int i, int j, int tmp);
 int			fake_order(t_stack_a *a, t_stack_b *b);
 
 int			number_100(t_stack_a *a, t_stack_b *b);
+int			number_100_helper(t_stack_a *a, t_stack_b *b, int z);
 int			moving_convenience(t_stack_a *a, t_stack_b *b, int x);
 int			stuff_mover(t_stack_a *a, t_stack_b *b, int i);
 int			move_down(t_stack_a *a, t_stack_b *b, int x);
@@ -98,14 +99,18 @@ int			move_up(t_stack_a *a, t_stack_b *b, int x);
 //TESTING SORT FUNCTIONS IN SORT_ALL
 //int number_100(t_stack_a *a, t_stack_b *b);
 int			position_number_b(t_stack_a *a, t_stack_b *b, int pos_a);
-int			moving_convenience_2(t_stack_a *a, t_stack_b *b, int pos_a, int pos_b);
+int			moving_convenience_2(t_stack_a *a, t_stack_b *b,
+				int pos_a, int pos_b);
+int			*moving_convenience_2_helper(t_stack_a *a,
+				t_stack_b *b, int *v, int *tmp);
 int			smallest_usable(int *tmp, int size);
 int			move_down_b(t_stack_a *a, t_stack_b *b, int y);
 int			move_up_b(t_stack_a *a, t_stack_b *b, int y);
 int			moving_convenience_b(t_stack_a *a, t_stack_b *b, int value);
 int			smallest_number_modified(t_stack_a *a, t_stack_b *b, int w);
 int			smallest_number_mod(t_stack_a *a, t_stack_b *b, int pos_a);
-int			smallest_number_position(t_stack_a *a, t_stack_b *b, int k, int *array_reserve);
+int			smallest_number_position(t_stack_a *a, t_stack_b *b,
+				int k, int *array_reserve);
 int			move_b(t_stack_a *a, t_stack_b *b, int x, int value);
 
 #endif

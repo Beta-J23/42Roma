@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   array_filler.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/22 11:01:03 by alpelliz          #+#    #+#             */
+/*   Updated: 2023/04/22 15:32:33 by alpelliz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -15,17 +26,13 @@ int	array_filler(t_stack_a *a, char **argv, int argc)
 		z = array_filler_helper_2(a, argc, argv, z);
 		a->array_a[z] = '\0';
 	}
-	//free (a->array_a);
 	return (0);
 }
 
 int	array_filler_helper_1(t_stack_a *a, char **argv, int argc, int i)
 {
 	if (argc == 1)
-	{
-		write (1, "Error: invalid number of args\n", 31);
 		exit (0);
-	}
 	if (argc == 2)
 	{
 		a->array_a = (char *)ft_calloc(ft_strlen(argv[1]), sizeof(char));
@@ -47,19 +54,17 @@ int	array_filler_helper_2(t_stack_a *a, int argc, char **argv, int z)
 
 	i = 1;
 	j = 0;
-	k = 0;
 	while (i < argc)
 	{
+		k = 0;
 		while (argv[i][k] != '\0')
 		{
-			j++;
 			k++;
-			//ft_printf("J = %d\n", j);
+			j++;
 		}
 		j++;
 		i++;
 	}
-	// ft_printf ("J FINE CICLO = %d\n", j);
 	a->array_a = (char *)ft_calloc(j, sizeof(char));
 	z = array_filler_helper_2_1(a, argc, argv, z);
 	return (z);
