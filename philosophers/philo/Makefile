@@ -6,11 +6,11 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/05/02 17:24:10 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/05/03 16:27:03 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.c arg_checker.c log_printer.c
+SRCS			= main.c arg_checker.c log_printer.c utils.c initializer.c routines.c
 OBJS			= $(SRCS:.c=.o)
 TARGET			= philo
 
@@ -24,7 +24,7 @@ all: $(TARGET)
 $(NAME) : all
 
 $(TARGET): $(SRCS)
-	@$(CC) $(SRCS) $(CFLAGS) -o $(TARGET)
+	@$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
 	@printf "Ready.\n"
 
 clean:

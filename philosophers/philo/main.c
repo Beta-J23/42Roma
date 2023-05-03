@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:07:48 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/02 19:02:10 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:14:55 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,44 @@
 //times, the simulation stops. If not specified, the simulation stops when a
 //philosopher dies.
 
-pthread_mutex_t mutex;
 
-void *my_first_routine()
+//creating threads
+//creating a thread more than number of philo for a clock monitor;
+int		thread_creator(t_data *data, t_philo *philo, int argc)
 {
-	pthread_mutex_lock(&mutex);
-	printf("first test from threads\n");
-	sleep (2);
-	printf("Ending thread\n");
-	pthread_mutex_unlock(&mutex);
-	return (0);
+	(void)philo;
+	//pthread_t *thread = NULL;
+	int		i;
+	
+	i = 0;
+	data->thread = malloc(sizeof(pthread_t) * data->number_of_philosophers);
+	while (i <= data->number_of_philosophers)
+	{
+		//data->thread = malloc(sizeof(pthread_t) * 1);
+		//pthread_mutex_init(&data->mutex, NULL);
+		data->philo->philo_num = i;
+		if (pthread_create(&data->thread[i], NULL, &my_first_routine, (void *)data) != 0)
+			return (1);
+		i++;
+	}
+	i = 0;
+	while (i <= argc)
+	{
+		pthread_join(data->thread[i], NULL);
+		i++;
+	}
+	free (data->thread);
+	return 0;
 }
 
 int main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	//printf("arguments are %d, %s, %s, %s\n", argc, argv[1], argv[2], argv[3]);
-	//declaring threads, will be structs.
-	pthread_t t1, t2;
+	t_philo philo;
+	t_data data;
+	arg_checker(argc, argv);
 	//initializing mutex;
-	pthread_mutex_init(&mutex, NULL);
-	// creating thread, passing: thread_name, attributes, name of function, args of function.
-	if (pthread_create(&t1, NULL, &my_first_routine, NULL) != 0)
-		return (1);
-	pthread_create(&t2, NULL, &my_first_routine, NULL);
-	// it's like a wait but for threads. passing: struct, 
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
+	//pthread_mutex_init(&data.mutex, NULL);
+	initializer(&data, &philo, argc, argv);
+	thread_creator(&data, &philo, argc);
 	return (0);
 }
