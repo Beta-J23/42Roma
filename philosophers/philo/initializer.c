@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:39:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/03 18:43:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:47:26 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int		initializer(t_data *data, t_philo *philo, int argc, char **argv)
 	data->time_to_sleep = ft_atoi_mod(argv[4]);
 	data->number_of_times_each_philosopher_must_eat = ft_atoi_mod(argv[5]);
 	data->forks = data->number_of_philosophers;
-	printf("atoi try argv[1] = %d\n", data->number_of_philosophers);
 	return (0);
 }

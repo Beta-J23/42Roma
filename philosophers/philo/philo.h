@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/03 19:13:24 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:46:07 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int		minimum_checker(int argc, char **argv, int i, int j);
 //initializer
 int		initializer(t_data *data, t_philo *philo, int argc, char **argv);
 void 	*my_first_routine(void *datas);
+void	*philo_routine();
 
 #endif
