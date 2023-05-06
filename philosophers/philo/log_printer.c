@@ -31,28 +31,28 @@
 
 int		log_printer(t_data *data, int	x)
 {
-	int		timestamp;
+	unsigned long long		timestamp;
 
 	// capire come mettere time 0;
-	timestamp = gettimeofday();
-	if (x = 1)
+	timestamp = ms_time();
+	if (x == 1)
 	{	
-		printf("%d, %d, is thinking");
+		printf("%lld, %d, is thinking", timestamp, data->philo->philo_num);
 		return (1);
 	}
-	if (x = 2)
+	if (x == 2)
 	{	
-		printf("%d, %d, has taken a fork");
+		printf("%lld, %d, has taken a fork", timestamp, data->philo->philo_num);
 		return (2);
 	}
-	if (x = 3)
+	if (x == 3)
 	{	
-		printf("%d, %d, is eating");
+		printf("%lld, %d, is eating", timestamp, data->philo->philo_num);
 		return (3);
 	}
-	if (x = 4)
+	if (x == 4)
 	{	
-		printf("%d, %d, is sleeping");
+		printf("%lld, %d, is sleeping", timestamp, data->philo->philo_num);
 		return (4);
 	}
 	return (0);

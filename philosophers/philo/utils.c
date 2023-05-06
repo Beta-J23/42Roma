@@ -13,6 +13,28 @@
 #include "philo.h"
 
 //time function
+//getting calcolando i secondi dal 1/1/1970 * 1000 (conversione a ms) + i microsecondi / 1000 (conversione a ms) (per più accuratezza);
+unsigned long long		ms_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == 1)
+	{
+		write(2, "Error!, gettime failed.\n", 25);
+		return(1);
+	}
+	return(tv.tv_sec * (unsigned long long)1000) + (tv.tv_usec / 1000);
+}
+
+/*u_int64_t	get_time(void)
+{
+	struct timeval	tv;
+	
+	if (gettimeofday(&tv, NULL))
+		return (error("gettimeofday() FAILURE\n", NULL));
+	return ((tv.tv_sec * (u_int64_t)1000) + (tv.tv_usec / 1000));
+}*/
+
 
 //clear function
 

@@ -14,7 +14,7 @@ SRCS			= main.c arg_checker.c log_printer.c utils.c initializer.c routines.c bas
 OBJS			= $(SRCS:.c=.o)
 TARGET			= philo
 
-CC				= gcc -g
+CC				= gcc -g -pthread
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror
 

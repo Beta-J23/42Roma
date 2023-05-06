@@ -28,15 +28,18 @@ int		initializer(t_data *data, t_philo *philo, int argc, char **argv)
 	data->time_to_sleep = ft_atoi_mod(argv[4]);
 	if (argc == 6)
 		data->number_of_times_each_philosopher_must_eat = ft_atoi_mod(argv[5]);
-	data->forks = data->number_of_philosophers;
+	super_v_initializer(data, philo);
+	//data->superv->fork = data->number_of_philosophers;
 	return (0);
 }
 
-int		super_v_initializer(t_data *data, t_philo *philo, int argc, char **argv)
+int		super_v_initializer(t_data *data, t_philo *philo)
 {
+	(void)philo;
 	data->superv->think = malloc(sizeof(int) * data->number_of_philosophers);
 	data->superv->sleep = malloc(sizeof(int) * data->number_of_philosophers);
 	data->superv->eat = malloc(sizeof(int) * data->number_of_philosophers);
 	data->superv->fork = malloc(sizeof(int) * data->number_of_philosophers);
 	data->superv->die = malloc(sizeof(int) * data->number_of_philosophers);
+	return (0);
 }
