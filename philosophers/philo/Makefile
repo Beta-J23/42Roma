@@ -6,11 +6,11 @@
 #    By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 15:33:18 by alpelliz          #+#    #+#              #
-#    Updated: 2023/05/03 16:27:03 by alpelliz         ###   ########.fr        #
+#    Updated: 2023/05/06 10:31:48 by alpelliz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.c arg_checker.c log_printer.c utils.c initializer.c routines.c
+SRCS			= main.c arg_checker.c log_printer.c utils.c initializer.c routines.c basic_utils.c
 OBJS			= $(SRCS:.c=.o)
 TARGET			= philo
 

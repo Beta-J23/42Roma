@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:39:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/03 19:47:26 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:51:06 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,17 @@ int		initializer(t_data *data, t_philo *philo, int argc, char **argv)
 	data->time_to_die = ft_atoi_mod(argv[2]);
 	data->time_to_eat = ft_atoi_mod(argv[3]);
 	data->time_to_sleep = ft_atoi_mod(argv[4]);
-	data->number_of_times_each_philosopher_must_eat = ft_atoi_mod(argv[5]);
+	if (argc == 6)
+		data->number_of_times_each_philosopher_must_eat = ft_atoi_mod(argv[5]);
 	data->forks = data->number_of_philosophers;
 	return (0);
+}
+
+int		super_v_initializer(t_data *data, t_philo *philo, int argc, char **argv)
+{
+	data->superv->think = malloc(sizeof(int) * data->number_of_philosophers);
+	data->superv->sleep = malloc(sizeof(int) * data->number_of_philosophers);
+	data->superv->eat = malloc(sizeof(int) * data->number_of_philosophers);
+	data->superv->fork = malloc(sizeof(int) * data->number_of_philosophers);
+	data->superv->die = malloc(sizeof(int) * data->number_of_philosophers);
 }
