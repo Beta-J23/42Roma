@@ -6,16 +6,23 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:25:34 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/06 16:06:26 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:01:07 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// create array of timestamp per fare le differenze per i time
+//1	 eat
+//2  sleep
+//3  die
+
+
 void *my_first_routine(void *datas)
 {
 	int		i;
 	int		j;
+	int		life;
 	
 	i = 0;
 	j = 0;
@@ -25,6 +32,7 @@ void *my_first_routine(void *datas)
 	printf("first test from threads\n");
 	printf("data->philo->philo_num %d\n", data->philo->philo_num);
 	// while supervisor don-t say to stop thining.
+	
 	if (data->philo->philo_num != 1 && data->superv->think == 1);
 	{
 		printf ("philo %d is thinking", data->philo->philo_num);
@@ -37,10 +45,9 @@ void *my_first_routine(void *datas)
 	{
 		//thinkin
 		printf ("philo %d is thinking", data->philo->philo_num);
-		while ()
-		{
-			
-		}
+		//log_printer(data, 1);
+		if (gettimeofday() - data->superv->time_array > data->time_to_die)
+			data->superv->death_alarm = 1;
 		// eating
 		// if fork precedente is available, take it, take also next fork. And eat!
 		if (data->superv->fork - 1 == 0)
@@ -48,20 +55,20 @@ void *my_first_routine(void *datas)
 			pthread_mutex_lock(&data->mutex[data->philo->philo_num]);
 			data->superv->fork - 1 == 1;
 			printf("philo %d has taken a fork", data->philo->philo_num);
-			//log_printer(data, 3)
+			//log_printer(data, 2);
 			data->superv->fork == 1;
+			data->superv->time_array[data->philo->philo_num][1] = gettimeofday();
 			printf("philo %d is eating", data->philo->philo_num);
-			//log_printer(data, 3)
+			//log_printer(data, 3);
 			usleep(data->time_to_eat * 1000);
 			data->superv->fork - 1 == 0;
 			data->superv->fork == 0;
 			pthread_mutex_unlock(&data->mutex[data->philo->philo_num]);
-		}
-		//sleep
-		while ()
-		{
 			
 		}
+		//sleep
+		printf ("philo %d is sleeping", data->philo->philo_num);
+		//log_printer(data, 4);
 		i++;
 	}
 	//trying philo routine in the routine;

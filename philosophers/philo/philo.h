@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/06 16:02:36 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:56:08 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 struct s_philo;
 struct s_superv;
+struct s_philo;
 
 
 typedef struct s_data
@@ -37,11 +38,14 @@ typedef struct s_data
 	pthread_mutex_t		lock;
 	struct	s_superv	*superv;
 	struct	s_philo		*philo;
+	struct	s_philo		*time;
 } t_data;
 
 typedef struct s_superv
 {
 	t_data	*data;
+	int		**action_array;
+	int		**time_array;
 	int		*think;
 	int		*sleep;
 	int		*eat;
