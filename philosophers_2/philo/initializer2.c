@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:42:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 16:59:32 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:26:57 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		super_v_initializer(t_data *data, t_start *start)
 	int		i;
 
 	i = 0;
-	data->superv.time_array = (unsigned long long **)malloc(sizeof(unsigned long long *) * (start->number_of_philosophers));
+	data->superv.time_array = (u_int64_t **)malloc(sizeof(u_int64_t *) * (start->number_of_philosophers));
 	data->superv.fork = malloc(sizeof(int) * start->number_of_philosophers);
 	//printf("fork %p\n",data->superv.fork);
 	//printf("superv.time_array %p\n",data->superv.time_array);
@@ -47,44 +47,30 @@ int		super_v_initializer(t_data *data, t_start *start)
 	{
 		data->superv.fork[i] = 0;
 		data->superv.action_array[i] = (int *)malloc(sizeof(int) * 4);
-		data->superv.time_array[i] = (unsigned long long *)malloc(sizeof(unsigned long long) * 4);
+		data->superv.time_array[i] = (u_int64_t *)malloc(sizeof(u_int64_t) * 4);
 		i++;
 	}
 	//printf("superv2: %p\n", data->superv.action_array);
 	data->superv.death_alarm = 0;
 	return (0);
 }
-/*
-int starter_struct(t_data *data, t_start *start)
-{
-	start = malloc(sizeof(t_start *));
-	printf("start %p\n",start);
-	start->number_of_philosophers = data->number_of_philosophers;
-	start->time_to_die = data->time_to_die;
-	start->time_to_eat = data->time_to_eat;
-	start->time_to_sleep = data->time_to_sleep;
-	start->number_of_times_each_philosopher_must_eat = data->number_of_times_each_philosopher_must_eat;
-	start->start_time = data->start_time;
-	return (0);
-}*/
 
-int clean_all(t_data *data)
+int	clean_all(t_data *data, t_start *start, t_philoz *philoz)
 {
 	int		i;
 
-	i = 1;
+	i = 0;
+	(void)philoz;
 	(void)data;
-	/*while (i <= data->number_of_philosophers)
+	while (i < start->number_of_philosophers)
 	{
 		free(data->superv.action_array[i]);
 		free(data->superv.time_array[i]);
 		//data->superv.action_array[i] = NULL;
 		i++;
-	}*/
-	/*
-	free(&data->philoz);
-	free(&data->superv.fork);
-	free(&data->superv.time_array);
-	free(&data->superv.action_array);*/
+	}
+	free(data->superv.fork);
+	free(data->superv.time_array);
+	free(data->superv.action_array);
 	return (0);
 }

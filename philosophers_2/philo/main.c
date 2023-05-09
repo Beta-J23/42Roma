@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:07:48 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 16:45:58 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:19:07 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,16 @@ int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc)
 	philoz = (t_philoz *)malloc(sizeof(t_philoz) * start->number_of_philosophers);
 	philoz->start = start;
 	philoz->superv = data->superv;
-	//data->philoz[i].t = malloc(sizeof(pthread_t) * data->number_of_philosophers);
-	printf("n_of_phil EAT = %d\n", start->number_of_times_each_philosopher_must_eat);
-	
 	while (i < start->number_of_philosophers)
 	{
-		philoz[i].id = i;
-		printf("TEST\n");
+		philoz[i].id = i + 1;
 		philoz[i].start = start;
 		philoz[i].superv = data->superv;
 		//philoz[i].datax = (t_data *)malloc(sizeof(t_data) * 1);
 		if (pthread_create(&philoz[i].t, NULL, &p_routine, (void *)&philoz[i]) != 0)
 			return (1);
 		pthread_mutex_init(&philoz[i].mutex, NULL);
+		usleep(100);
 		i++;
 	}
 	i = 0;
@@ -52,6 +49,7 @@ int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc)
 		pthread_mutex_destroy(&philoz[i].mutex);
 		i++;
 	}
+	free (philoz);
 	return 0;
 }
 
@@ -63,6 +61,6 @@ int main(int argc, char **argv)
 	arg_checker(argc, argv);
 	initializer(&data, &start, argc, argv);
 	thread_creator(&data, &philoz, &start, argc);
-	clean_all(&data);
+	clean_all(&data, &start, &philoz);
 	return (0);
 }

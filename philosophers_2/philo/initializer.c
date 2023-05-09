@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:39:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 15:30:17 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:08:03 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,10 @@ int		super_v_initializer(t_data *data)
 	i = 1;
 	
 	//malloc or not malloc the arrays of actions and time?
-	//data->superv.time_array = NULL;
-	//data->superv = (void *)malloc(sizeof(t_superv));
 	data->superv.time_array = (unsigned long long **)malloc(sizeof(unsigned long long *) * (data->number_of_philosophers));
 	data->superv.fork = malloc(sizeof(int) * data->number_of_philosophers);
 	printf("fork %p\n",data->superv.fork);
 	printf("superv.time_array %p\n",data->superv.time_array);
-	//data->superv.fork = NULL;
-	////data->superv.action_array = (int **)malloc(sizeof(int *) * (data->number_of_philosophers * 4));
 	printf("superv1: %p\n", data->superv.action_array);
 	data->superv.action_array = (int **)malloc(sizeof(int *) * data->number_of_philosophers);
 	while (i <= data->number_of_philosophers)

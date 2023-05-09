@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:13:57 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 17:00:06 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:33:46 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,64 @@ void *p_routine(void *datas)
 	while (i < philoz->start->number_of_times_each_philosopher_must_eat && philoz->superv.death_alarm == 0)
 	{
 		//printf("philoz->superv.time_array[philoz->id][1] = \n %lld", philoz->superv.time_array[philoz->id][1]);
-		printf("ms_time() = %lld \n", ms_time());
-		if (((ms_time() - philoz->superv.time_array[philoz->id][1]) > (unsigned long long)philoz->start->time_to_die))
+		//printf("ms_time() = %lld \n", ms_time());
+		// se time attuale - time dell'ultima volta che ha mangiato > time to die
+		printf("philoz id = %d\n", philoz->id);
+		if (((ms_time() - philoz->superv.time_array[philoz->id][1]) - philoz->start->start_time > (u_int64_t)philoz->start->time_to_die) && i > 0)
+		{
 			philoz->superv.action_array[philoz->id][3] = 1;
+			printf("start_time = %lld\n", philoz->start->start_time);
+			printf("philoz->superv.time_array[philoz->id][1] = %lld\n", ms_time() - philoz->superv.time_array[philoz->id][1]);
+			printf("(unsigned long long)philoz->start->time_to_die = %lld\n", (u_int64_t)philoz->start->time_to_die);
+		}
 		// eating
 		// if fork precedente is available, take it, take also next fork. And eat!
-		if (philoz->superv.fork[philoz->id - 1] == 0)
-		{
-			pthread_mutex_lock(&philoz->mutex);
-			log_printer(philoz, 2);
-			philoz->superv.fork[philoz->id] = 1;
-			philoz->superv.time_array[philoz->id][1] = ms_time();
-			log_printer(philoz, 3);
-			usleep(philoz->start->time_to_eat);
-			philoz->superv.fork[philoz->id] = 0;
-			pthread_mutex_unlock(&philoz->mutex);
-		}
+		if (philoz->id == 1)
+			eat_last(philoz);
+		if (philoz->id != 1)
+			eat(philoz);
 		philo_big_brother(philoz);
 		//sleep
 		log_printer(philoz, 4);
+		usleep(100);
 		i++;
 	}
 	// develop similar semaphore
+	//usleep (100);
 	printf("Ending thread\n");
-	usleep (1000);
 	return (0);
+}
+
+int		eat(t_philoz *philoz)
+{
+	if (philoz->superv.fork[philoz->id - 1] == 0)
+	{
+		pthread_mutex_lock(&philoz->mutex);
+		log_printer(philoz, 2);
+		philoz->superv.fork[philoz->id] = 1;
+		philoz->superv.time_array[philoz->id][1] = ms_time();
+		log_printer(philoz, 3);
+		usleep(philoz->start->time_to_eat);
+		philoz->superv.fork[philoz->id] = 0;
+		pthread_mutex_unlock(&philoz->mutex);
+	}
+	return (0);
+}
+
+int		eat_last(t_philoz *philoz)
+{
+	if (philoz->superv.fork[philoz->start->number_of_philosophers] == 0)
+	{
+		pthread_mutex_lock(&philoz->mutex);
+		log_printer(philoz, 2);
+		philoz->superv.fork[philoz->id] = 1;
+		philoz->superv.time_array[philoz->id][1] = ms_time();
+		log_printer(philoz, 3);
+		usleep(philoz->start->time_to_eat);
+		philoz->superv.fork[philoz->id] = 0;
+		pthread_mutex_unlock(&philoz->mutex);
+	}
+	return(0);
 }
 
 int philo_big_brother(t_philoz *philoz)
@@ -68,16 +101,11 @@ int philo_big_brother(t_philoz *philoz)
 	i = 0;
 	while (i < philoz->start->number_of_philosophers)
 	{
-		j = 0;
-		while (j < 4)
+		if (philoz->superv.action_array[i][3] == 1)
 		{
-			if (philoz->superv.action_array[i][j] == 1)
-			{
-				printf("philo number %d is dead", i);
-				philoz->superv.death_alarm = 1;
-				return (1);
-			}
-			j++;
+			printf("philo number %d is dead\n", i + 1);
+			philoz->superv.death_alarm = 1;
+			return (1);
 		}
 		i++;
 	}
