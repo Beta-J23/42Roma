@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 11:56:29 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:48:22 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ typedef struct s_superv
 {
 	int					**action_array;
 	unsigned long long	**time_array;
+	//int					**time_array;
 	int					*think;
 	int					*sleep;
 	int					*eat;
 	int					*fork;
 	int					*die;
 	int					death_alarm;
+	int					time_to_eat;
 } t_superv;
-/*
+
 typedef struct s_start
 {
 	int					number_of_philosophers;
@@ -40,31 +42,29 @@ typedef struct s_start
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					number_of_times_each_philosopher_must_eat;
+	unsigned long long	start_time;
 } t_start;
-*/
+
 typedef struct s_philoz
 {
-	struct s_data		*datax;
+	//struct s_data		*datax;
 	int					id;
 	pthread_mutex_t 	mutex;
 	pthread_t			t;
-	//t_start				*start;
+	t_start				*start;
+	t_superv			superv;
 } t_philoz;
 
 typedef struct s_data
 {
-	int					number_of_philosophers;
-	//int					**forks_array;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					number_of_times_each_philosopher_must_eat;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		lock;
 	unsigned long long	start_time;
 	t_philoz			*philoz;
 	t_superv			superv;
 	struct	s_philo		*time;
+	t_start				*start;
+	
 } t_data;
 
 
@@ -76,7 +76,7 @@ struct s_time
 } t_time;
 
 //	main.c
-int		thread_creator(t_data *data, t_philoz *philoz, int argc);
+int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc);
 // basic_utils.c
 int		ft_strlen(const char *s);
 int		ft_isdigit(int c);
@@ -89,14 +89,15 @@ int		arg_checker(int argc, char **argv);
 int		number_checker(int argc, char **argv, int i, int j);
 int		minimum_checker(int argc, char **argv, int i, int j);
 //initializer
-int		initializer(t_data *data, int argc, char **argv);
-int		super_v_initializer(t_data *data);
-int clean_all(t_data *data);
+int		initializer(t_data *data, t_start *start, int argc, char **argv);
+int		super_v_initializer(t_data *data, t_start *start);
+int		starter_struct(t_data *data, t_start *start);
+int		clean_all(t_data *data);
 // log_printer
-int		log_printer(t_data *data, int	x);
+int		log_printer(t_philoz *philoz, int	x);
 //routines.c
 void 	*my_first_routine(void *datas);
-int 	philo_big_brother(t_data *data);
-void *p_routine(void *datas);
+int philo_big_brother(t_philoz *philoz);
+void	*p_routine(void *datas);
 
 #endif

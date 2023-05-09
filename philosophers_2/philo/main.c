@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:07:48 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 11:39:05 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:45:58 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,36 @@
 
 //creating threads
 //creating a thread more than number of philo for a clock monitor;
-int		thread_creator(t_data *data, t_philoz *philoz, int argc)
+int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc)
 {
 	(void)argc;
 	int		i;
 	
 	philoz->id = 0;
-	i = 1;
-	data->philoz = (t_philoz *)malloc(sizeof(t_philoz) * data->number_of_philosophers);
-	
+	i = 0;
+	philoz = (t_philoz *)malloc(sizeof(t_philoz) * start->number_of_philosophers);
+	philoz->start = start;
+	philoz->superv = data->superv;
 	//data->philoz[i].t = malloc(sizeof(pthread_t) * data->number_of_philosophers);
-	//printf("n_of_phil EAT = %d\n", data->number_of_times_each_philosopher_must_eat);
+	printf("n_of_phil EAT = %d\n", start->number_of_times_each_philosopher_must_eat);
 	
-	while (i <= data->number_of_philosophers)
+	while (i < start->number_of_philosophers)
 	{
-		data->philoz[i].id = i;
-		data->philoz[i].datax = data;
+		philoz[i].id = i;
+		printf("TEST\n");
+		philoz[i].start = start;
+		philoz[i].superv = data->superv;
 		//philoz[i].datax = (t_data *)malloc(sizeof(t_data) * 1);
-		if (pthread_create(&data->philoz[i].t, NULL, &p_routine, (void *)&data->philoz[i]) != 0)
+		if (pthread_create(&philoz[i].t, NULL, &p_routine, (void *)&philoz[i]) != 0)
 			return (1);
-		pthread_mutex_init(&data->philoz[i].mutex, NULL);
+		pthread_mutex_init(&philoz[i].mutex, NULL);
 		i++;
 	}
-	i = 1;
-	while (i <= data->number_of_philosophers)
+	i = 0;
+	while (i < start->number_of_philosophers)
 	{
-		pthread_join(data->philoz[i].t, NULL);
+		pthread_join(philoz[i].t, NULL);
+		pthread_mutex_destroy(&philoz[i].mutex);
 		i++;
 	}
 	return 0;
@@ -55,9 +59,10 @@ int main(int argc, char **argv)
 {
 	t_philoz philoz;
 	t_data data;
+	t_start start;
 	arg_checker(argc, argv);
-	initializer(&data, argc, argv);
-	thread_creator(&data, &philoz, argc);
+	initializer(&data, &start, argc, argv);
+	thread_creator(&data, &philoz, &start, argc);
 	clean_all(&data);
 	return (0);
 }

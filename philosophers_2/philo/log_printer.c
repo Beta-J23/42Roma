@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:59:59 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/08 17:09:39 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:39:44 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,31 @@
 //• Again, philosophers should avoid dying!
 //Your program must not have any data races.
 
-int		log_printer(t_data *data, int	x)
+int		log_printer(t_philoz *philoz, int	x)
 {
 	int		timestamp;
 
 	//printf("start_t = %lld\n", data->start_time);
 	//printf("ms_time = %lld\n", ms_time());
-	timestamp = ms_time() - data->start_time;
+	timestamp = ms_time() - philoz->start->start_time;
 	if (x == 1)
 	{	
-		printf("%d, %d, is thinking\n", timestamp, data->philoz->id);
+		printf("%d, %d, is thinking\n", timestamp, philoz->id + 1);
 		return (1);
 	}
 	if (x == 2)
 	{	
-		printf("%d, %d, has taken a fork\n", timestamp, data->philoz->id);
+		printf("%d, %d, has taken a fork\n", timestamp, philoz->id + 1);
 		return (2);
 	}
 	if (x == 3)
 	{	
-		printf("%d, %d, is eating\n", timestamp, data->philoz->id);
+		printf("%d, %d, is eating\n", timestamp, philoz->id + 1);
 		return (3);
 	}
 	if (x == 4)
 	{	
-		printf("%d, %d, is sleeping\n", timestamp, data->philoz->id);
+		printf("%d, %d, is sleeping\n", timestamp, philoz->id + 1);
 		return (4);
 	}
 	return (0);
