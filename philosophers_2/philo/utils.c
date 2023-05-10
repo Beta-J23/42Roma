@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 10:47:03 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 18:28:32 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:16:14 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ u_int64_t		ms_time(void)
 		write(2, "Error!, gettime failed.\n", 25);
 		return(1);
 	}
-	//return(tv.tv_sec * (u_int64_t)1000) + (tv.tv_usec / 1000);
-	return (tv.tv_usec / 1000);
+	return(tv.tv_sec * (u_int64_t)1000) + (tv.tv_usec / 1000);
+	//return (tv.tv_usec / 1000);
 }
 
 /*unsigned long long		ms_time(void)

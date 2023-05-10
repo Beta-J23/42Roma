@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:13:57 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 18:33:46 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:30:40 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ void *p_routine(void *datas)
 		//printf("philoz->superv.time_array[philoz->id][1] = \n %lld", philoz->superv.time_array[philoz->id][1]);
 		//printf("ms_time() = %lld \n", ms_time());
 		// se time attuale - time dell'ultima volta che ha mangiato > time to die
-		printf("philoz id = %d\n", philoz->id);
-		if (((ms_time() - philoz->superv.time_array[philoz->id][1]) - philoz->start->start_time > (u_int64_t)philoz->start->time_to_die) && i > 0)
+		
+		//printf("philoz id = %d\n", philoz->id);
+		//printf("philoz->superv.time_array[philoz->id][1] = %lld, philoz_id = %d\n", philoz->superv.time_array[philoz->id][1], philoz->id);
+		//printf ("ms_time() = %lld\n", ms_time());
+		//printf("philoz->start->start_time %lld\n", philoz->start->start_time);
+		//printf("(philoz->superv.time_array[philoz->id][1] - philoz->start->start_time) = %lld\n", (philoz->superv.time_array[philoz->id][1] - philoz->start->start_time));
+		printf("ms_time() - philoz->start->start_time = %lld\n", ms_time() - philoz->start->start_time);
+		if ((((ms_time() - philoz->start->start_time) - (philoz->superv.time_array[philoz->id][1] - philoz->start->start_time))  > 
+			((u_int64_t)philoz->start->time_to_die) - philoz->start->start_time) && i > 0)
 		{
 			philoz->superv.action_array[philoz->id][3] = 1;
 			printf("start_time = %lld\n", philoz->start->start_time);

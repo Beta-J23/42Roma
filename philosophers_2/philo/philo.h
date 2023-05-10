@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 18:31:25 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:45:29 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ typedef struct s_superv
 {
 	int					**action_array;
 	u_int64_t			**time_array;
-	//int					**time_array;
-	int					*think;
-	int					*sleep;
-	int					*eat;
+	//int					*think;
+	//int					*sleep;
+	//int					*eat;
+	//int					*die;
 	int					*fork;
-	int					*die;
 	int					death_alarm;
 	int					time_to_eat;
 } t_superv;

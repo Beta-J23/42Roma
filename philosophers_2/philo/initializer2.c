@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:42:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/09 18:26:57 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:29:48 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,32 @@ int		initializer(t_data *data, t_start *start, int argc, char **argv)
 int		super_v_initializer(t_data *data, t_start *start)
 {
 	int		i;
+	int		j;
 
 	i = 0;
-	data->superv.time_array = (u_int64_t **)malloc(sizeof(u_int64_t *) * (start->number_of_philosophers));
+	j = 0;
+	data->superv.time_array = (u_int64_t **)malloc(sizeof(u_int64_t *) * start->number_of_philosophers + 1);
 	data->superv.fork = malloc(sizeof(int) * start->number_of_philosophers);
 	//printf("fork %p\n",data->superv.fork);
 	//printf("superv.time_array %p\n",data->superv.time_array);
 	//printf("superv1: %p\n", data->superv.action_array);
 	data->superv.action_array = (int **)malloc(sizeof(int *) * start->number_of_philosophers);
-	while (i < start->number_of_philosophers)
+	while (i <= start->number_of_philosophers)
 	{
 		data->superv.fork[i] = 0;
 		data->superv.action_array[i] = (int *)malloc(sizeof(int) * 4);
 		data->superv.time_array[i] = (u_int64_t *)malloc(sizeof(u_int64_t) * 4);
+		i++;
+	}
+	i = 0;
+	while (i <= start->number_of_philosophers)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			data->superv.time_array[i][j] = 0;
+			j++;
+		}
 		i++;
 	}
 	//printf("superv2: %p\n", data->superv.action_array);
