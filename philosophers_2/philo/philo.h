@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/11 16:09:20 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:07:17 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int		philo_big_brother(t_philoz *philoz);
 void	*p_routine(void *datas);
 int		eat(t_philoz *philoz, int j);
 int		eat_last(t_philoz *philoz, int j);
+int		alone(t_philoz *philoz);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:07:48 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/11 15:44:31 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:58:00 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc)
 		if (pthread_create(&philoz[i].t, NULL, &p_routine, (void *)&philoz[i]) != 0)
 			return (1);
 		pthread_mutex_init(&philoz[i].mutex, NULL);
-		usleep(100);
+		//usleep_re(100);
 		//usleep_re(100);
 		//printf ("i = %d\n", i);
 		i++;
