@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:42:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/10 13:29:48 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:17:28 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		initializer(t_data *data, t_start *start, int argc, char **argv)
 	start->time_to_eat = ft_atoi_mod(argv[3]);
 	start->time_to_sleep = ft_atoi_mod(argv[4]);
 	start->start_time = ms_time();
+	if (argc == 5)
+		start->number_of_times_each_philosopher_must_eat = -1;
 	if (argc == 6)
 		start->number_of_times_each_philosopher_must_eat = ft_atoi_mod(argv[5]);
 	//data->start = (t_start *)malloc(sizeof(t_start));
@@ -39,7 +41,7 @@ int		super_v_initializer(t_data *data, t_start *start)
 
 	i = 0;
 	j = 0;
-	data->superv.time_array = (u_int64_t **)malloc(sizeof(u_int64_t *) * start->number_of_philosophers + 1);
+	data->superv.time_array = (unsigned long **)malloc(sizeof(unsigned long *) * start->number_of_philosophers + 1);
 	data->superv.fork = malloc(sizeof(int) * start->number_of_philosophers);
 	//printf("fork %p\n",data->superv.fork);
 	//printf("superv.time_array %p\n",data->superv.time_array);
@@ -49,7 +51,7 @@ int		super_v_initializer(t_data *data, t_start *start)
 	{
 		data->superv.fork[i] = 0;
 		data->superv.action_array[i] = (int *)malloc(sizeof(int) * 4);
-		data->superv.time_array[i] = (u_int64_t *)malloc(sizeof(u_int64_t) * 4);
+		data->superv.time_array[i] = (unsigned long *)malloc(sizeof(unsigned long) * 4);
 		i++;
 	}
 	i = 0;

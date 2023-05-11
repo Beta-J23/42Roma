@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/10 12:45:29 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:09:20 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ struct s_data;
 typedef struct s_superv
 {
 	int					**action_array;
-	u_int64_t			**time_array;
+	unsigned long		**time_array;
 	//int					*think;
 	//int					*sleep;
 	//int					*eat;
@@ -37,12 +37,12 @@ typedef struct s_superv
 
 typedef struct s_start
 {
-	int					number_of_philosophers;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					number_of_times_each_philosopher_must_eat;
-	u_int64_t			start_time;
+	int						number_of_philosophers;
+	int						time_to_die;
+	int						time_to_eat;
+	int						time_to_sleep;
+	int						number_of_times_each_philosopher_must_eat;
+	unsigned long			start_time;
 } t_start;
 
 typedef struct s_philoz
@@ -50,6 +50,8 @@ typedef struct s_philoz
 	//struct s_data		*datax;
 	int					id;
 	pthread_mutex_t 	mutex;
+	pthread_mutex_t		forks_pre;
+	pthread_mutex_t		forks_post;
 	pthread_t			t;
 	t_start				*start;
 	t_superv			superv;
@@ -67,14 +69,6 @@ typedef struct s_data
 	
 } t_data;
 
-
-
-struct s_time 
-{
-	time_t       tv_sec;   /* seconds since Jan. 1, 1970 */
-	suseconds_t  tv_usec;  /* and microseconds */
-} t_time;
-
 //	main.c
 int		thread_creator(t_data *data, t_philoz *philoz, t_start *start, int argc);
 // basic_utils.c
@@ -83,7 +77,8 @@ int		ft_isdigit(int c);
 int		atoi_limit(long long nb);
 int		ft_atoi_mod(char *str);
 // utils.c
-u_int64_t		ms_time(void);
+unsigned long		ms_time(void);
+void				usleep_re(useconds_t time);
 // arg_checker.c
 int		arg_checker(int argc, char **argv);
 int		number_checker(int argc, char **argv, int i, int j);
@@ -99,7 +94,7 @@ int		log_printer(t_philoz *philoz, int	x);
 void 	*my_first_routine(void *datas);
 int		philo_big_brother(t_philoz *philoz);
 void	*p_routine(void *datas);
-int		eat(t_philoz *philoz);
-int		eat_last(t_philoz *philoz);
+int		eat(t_philoz *philoz, int j);
+int		eat_last(t_philoz *philoz, int j);
 
 #endif

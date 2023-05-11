@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:59:34 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/03 11:53:28 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:45:29 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		minimum_checker(int argc, char **argv, int i, int j)
 		{
 			if (argv[i][j] < '1')
 			{
-				write(2, "Error\n", 32);
+				write(2, "Error\n", 7);
 				exit (0);
 			}
 			break;
