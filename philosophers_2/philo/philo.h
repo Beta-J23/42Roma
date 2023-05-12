@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/12 11:45:57 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:51:26 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ int		ft_strlen(const char *s);
 int		ft_isdigit(int c);
 int		atoi_limit(long long nb);
 int		ft_atoi_mod(char *str);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
+
 // utils.c
 unsigned long		ms_time(void);
 void				usleep_re(useconds_t time);

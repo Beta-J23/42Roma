@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   basic_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:15 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/03 15:49:19 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:49:01 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,27 @@ int	ft_atoi_mod(char *str)
 	}
 	return (atoi_limit(intero * var));
 }
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*sb;
+
+	sb = s;
+	while (n != 0)
+	{
+		*sb++ = '\0';
+		n--;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*str;
+
+	str = (char *) malloc(count * size);
+	if (!str)
+		return (0);
+	ft_bzero(str, count * size);
+	return (str);
+}
+

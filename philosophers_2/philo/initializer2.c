@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:42:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/12 16:16:10 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:55:03 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,29 @@ int		super_v_initializer(t_data *data, t_start *start)
 	data->superv.time_array = (unsigned long **)malloc(sizeof(unsigned long *) * start->number_of_philosophers + 1);
 	data->superv.fork = malloc(sizeof(int) * start->number_of_philosophers);
 	data->superv.forks = malloc(sizeof(pthread_mutex_t) * start->number_of_philosophers + 1);
+	data->superv.action_array = (int **)malloc(sizeof(int *) * start->number_of_philosophers + 1);
 	//printf("fork %p\n",data->superv.fork);
 	//printf("superv.time_array %p\n",data->superv.time_array);
 	//printf("superv1: %p\n", data->superv.action_array);
-	data->superv.action_array = (int **)malloc(sizeof(int *) * start->number_of_philosophers);
 	while (i <= start->number_of_philosophers)
 	{
 		data->superv.fork[i] = 0;
-		data->superv.action_array[i] = (int *)malloc(sizeof(int) * 4);
-		data->superv.time_array[i] = (unsigned long *)malloc(sizeof(unsigned long) * 4);
+		//data->superv.action_array[i] = (int *)malloc(sizeof(int) * 5);
+		data->superv.action_array[i] = (int *)ft_calloc(5, sizeof(int));
+		//a->array_int_a = (int *)ft_calloc(a->size, sizeof(int));
+		//data->superv.time_array[i] = (unsigned long *)malloc(sizeof(unsigned long) * 5);
+		data->superv.time_array[i] = (unsigned long *)ft_calloc(5, sizeof(unsigned long));
+		
 		i++;
 	}
 	i = 0;
 	while (i <= start->number_of_philosophers)
 	{
 		j = 0;
-		while (j < 4)
+		while (j <= 4)
 		{
-			data->superv.time_array[i][j] = 0;
+			//data->superv.time_array[i][j] = 0;
+			//data->superv.action_array[i][j] = 0;
 			j++;
 		}
 		i++;
@@ -78,15 +83,18 @@ int	clean_all(t_data *data, t_start *start, t_philoz *philoz)
 	i = 0;
 	(void)philoz;
 	(void)data;
-	while (i < start->number_of_philosophers)
+	while (i <= start->number_of_philosophers)
 	{
 		free(data->superv.action_array[i]);
 		free(data->superv.time_array[i]);
 		//data->superv.action_array[i] = NULL;
 		i++;
 	}
-	free(data->superv.fork);
-	free(data->superv.time_array);
-	free(data->superv.action_array);
+	if(data->superv.fork)
+		free(data->superv.fork);
+	if(data->superv.time_array)
+		free(data->superv.time_array);
+	if(data->superv.action_array)
+		free(data->superv.action_array);
 	return (0);
 }
