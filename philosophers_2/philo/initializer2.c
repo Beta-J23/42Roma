@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:42:11 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/11 15:17:28 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:16:10 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		super_v_initializer(t_data *data, t_start *start)
 	j = 0;
 	data->superv.time_array = (unsigned long **)malloc(sizeof(unsigned long *) * start->number_of_philosophers + 1);
 	data->superv.fork = malloc(sizeof(int) * start->number_of_philosophers);
+	data->superv.forks = malloc(sizeof(pthread_mutex_t) * start->number_of_philosophers + 1);
 	//printf("fork %p\n",data->superv.fork);
 	//printf("superv.time_array %p\n",data->superv.time_array);
 	//printf("superv1: %p\n", data->superv.action_array);

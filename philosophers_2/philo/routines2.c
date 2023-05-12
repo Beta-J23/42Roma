@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:13:57 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/11 17:57:12 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:48:06 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void *p_routine(void *datas)
 	while (philoz->superv.death_alarm == 0)
 	{
 		printf("philoz->superv.death_alarm == %d\n", philoz->superv.death_alarm);
-		if (philoz->superv.death_alarm == 1)
-			break;
+		//if (philoz->superv.death_alarm == 1)
+		//	break;
 		log_printer(philoz, 1);
 		//die cycle
 		if ((((ms_time()) - (philoz->superv.time_array[philoz->id][1])  > 
@@ -46,8 +46,6 @@ void *p_routine(void *datas)
 			philoz->superv.death_alarm = 1;
 			break;
 		}
-		if (philoz->superv.death_alarm == 1)
-			break;
 		// eating
 		// if fork precedente is available, take it, take also next fork. And eat!
 		if (philoz->id == 1)
@@ -72,7 +70,7 @@ int		eat(t_philoz *philoz, int j)
 	if ((philoz->superv.fork[philoz->id - 1] == 0) && j != philoz->start->number_of_times_each_philosopher_must_eat)
 	{
 		philoz->superv.fork[philoz->id] = 1;
-		pthread_mutex_lock(&philoz[]->mutex);
+		pthread_mutex_lock(&philoz->mutex);
 		log_printer(philoz, 2);
 		philoz->superv.time_array[philoz->id][1] = ms_time();
 		log_printer(philoz, 3);

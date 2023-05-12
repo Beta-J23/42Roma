@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:01:25 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/11 17:07:17 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:57 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_superv
 	int					*fork;
 	int					death_alarm;
 	int					time_to_eat;
+	pthread_mutex_t			*forks;
 } t_superv;
 
 typedef struct s_start
@@ -59,7 +60,7 @@ typedef struct s_philoz
 
 typedef struct s_data
 {
-	pthread_mutex_t		*forks;
+	//pthread_mutex_t		*forks;
 	pthread_mutex_t		lock;
 	u_int64_t	start_time;
 	t_philoz			*philoz;
