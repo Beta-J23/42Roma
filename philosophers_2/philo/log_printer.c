@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:59:59 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/12 12:02:25 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:04:22 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@
 //• Again, philosophers should avoid dying!
 //Your program must not have any data races.
 
-int		log_printer(t_philoz *philoz, int	x)
+int	log_printer(t_philoz *philoz, int	x)
 {
 	int		timestamp;
 
-	//printf("start_t = %lld\n", data->start_time);
-	//printf("ms_time = %lld\n", ms_time());
 	timestamp = ms_time() - philoz->start->start_time;
 	if (x == 1)
 	{	
@@ -62,11 +60,6 @@ int		log_printer(t_philoz *philoz, int	x)
 		philoz->superv.death_alarm = 1;
 		//exit (0);
 		return (5);
-	}
-	if (x == 6)
-	{	
-		printf("%d, %d, has dropped a fork\n", timestamp, philoz->id);
-		return (6);
 	}
 	return (0);
 }

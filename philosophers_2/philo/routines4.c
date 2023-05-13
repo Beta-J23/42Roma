@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routines3.c                                        :+:      :+:    :+:   */
+/*   routines4.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:47:22 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/13 12:03:11 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/13 12:04:01 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	*p_routine(void *datas)
 {
 	int		i;
 	int		j;
+	int		x;
 	t_philoz *philoz = (t_philoz *) datas;
 
 	i = 0;
 	j = 0;
+	x = 0;
 
 	printf("Thread Started, %d\n", philoz->id);
 	//usleep_re(philoz->id);
@@ -45,20 +47,28 @@ void	*p_routine(void *datas)
 			return(0);
 		}
 		//die cycle
-		if ((((ms_time()) - (philoz->superv.time_array[philoz->id][1]) > 
-			((unsigned long)philoz->start->time_to_die) && j > 1 && i > 0)) || //prova con j
+		//if ((((ms_time()) - (philoz->superv.time_array[philoz->id][1]) > 
+		//	(unsigned long)philoz->start->time_to_die && j > 0 && i > 0)) || //prova con j
+		if ((((ms_time()) - (philoz->superv.eat[philoz->id]) > 
+			(unsigned long)philoz->start->time_to_die && j > 0 && i > 0)) || //prova con j
 			(((ms_time() - (unsigned long)philoz->start->start_time) > (unsigned long)philoz->start->time_to_die) && (i == 0)))
 		{	
 			printf("ms_time = %lu\n", ms_time());
-			printf("(philoz->superv.time_array[philoz->id][1]) = %lu, philoz->id = %d\n", philoz->superv.time_array[philoz->id][1], philoz->id);
-			printf("(ms_time()) - (philoz->superv.time_array[philoz->id][1]) = %lu\n", (ms_time() - philoz->superv.time_array[philoz->id][1]));
-			printf("(unsigned long)philoz->start->time_to_die) = %lu\n", (unsigned long)philoz->start->time_to_die);
+			//printf("(philoz->superv.time_array[philoz->id][1]) = %lu, philoz->id = %d\n", philoz->superv.time_array[philoz->id][1], philoz->id);
+			//printf("(ms_time()) - (philoz->superv.time_array[philoz->id][1]) = %lu\n", (ms_time() - philoz->superv.time_array[philoz->id][1]));
+			//printf("(unsigned long)philoz->start->time_to_die) = %lu\n", (unsigned long)philoz->start->time_to_die);
 			philoz->superv.death_alarm = 1;
-			philoz->superv.action_array[philoz->id][3] = 1;
+			//philoz->superv.action_array[philoz->id][3] = 1;
 			log_printer(philoz, 5);
-			
+			//while (x <= philoz->start->number_of_philosophers)
+			//{
+			//	pthread_mutex_lock(&philoz->superv.forks[x]);
+			//	x++;
+			//}
 			break;
 		}
+		if (philoz->superv.death_alarm == 1)
+			break;
 		// eating
 		// if fork precedente is available, take it, take also next fork. And eat!
 		if (philoz->id == 1)
@@ -66,20 +76,23 @@ void	*p_routine(void *datas)
 		if (philoz->id != 1)
 			j = eat(philoz, j);
 		//usleep_re(10);
-
-		if (philoz->superv.action_array[philoz->id][1] == 1)
+		//if (philoz->superv.action_array[philoz->id][1] == 1)
+		if (philoz->superv.action_eat[philoz->id] == 1)
 		{
-			philoz->superv.action_array[philoz->id][1] = 0;
+			//philoz->superv.action_array[philoz->id][1] = 0;
+			philoz->superv.action_eat[philoz->id] = 0;
 			log_printer(philoz, 4);
-			philoz->superv.action_array[philoz->id][2] = 1;
+			//philoz->superv.action_array[philoz->id][2] = 1;
+            philoz->superv.action_sleep[philoz->id] = 1;
 			usleep_re(philoz->start->time_to_sleep);
-			philoz->superv.action_array[philoz->id][2] = 0;
+			//philoz->superv.action_array[philoz->id][2] = 0;
+			philoz->superv.action_sleep[philoz->id] = 0;
 		}
 		//sleep
-		philo_big_brother(philoz);
+		//philo_big_brother(philoz);
 		i++;
 	}
-	printf("id = %d, j = %d\n",philoz->id, j);
+	//printf("id = %d, j = %d\n",philoz->id, j);
 	printf("END philoz->superv.death_alarm == %d\n", philoz->superv.death_alarm);
 	printf("Ending thread, %d\n", philoz->id);
 	return (0);
@@ -99,9 +112,11 @@ int	eat(t_philoz *philoz, int j)
 			//if ((pthread_mutex_lock(&philoz->superv.forks[philoz->id]) == 0))
 		//{
 			log_printer(philoz, 2);
-			philoz->superv.time_array[philoz->id][1] = ms_time();
-			printf("ms_time in EAT = %lu, philoz->id = %d\n", ms_time(), philoz->id);
-			philoz->superv.action_array[philoz->id][1] = 1;
+			//printf("ms_time in EAT = %lu, philoz->id = %d\n", ms_time(), philoz->id);
+			//philoz->superv.time_array[philoz->id][1] = ms_time();
+			philoz->superv.eat[philoz->id] = ms_time();
+			//philoz->superv.action_array[philoz->id][1] = 1;
+			philoz->superv.action_eat[philoz->id] = 1;
 			//philoz->superv.fork[philoz->id] = 1;
 			log_printer(philoz, 3);
 			usleep_re(philoz->start->time_to_eat);
@@ -134,8 +149,10 @@ int		eat_last(t_philoz *philoz, int j)
 		//if (pthread_mutex_lock(&philoz->superv.forks[philoz->id]) == 0)
 		//{
 			log_printer(philoz, 2);
-			philoz->superv.time_array[philoz->id][1] = ms_time();
-			philoz->superv.action_array[philoz->id][1] = 1;
+			//philoz->superv.time_array[philoz->id][1] = ms_time();
+			philoz->superv.eat[philoz->id] = ms_time();
+			//philoz->superv.action_array[philoz->id][1] = 1;
+			philoz->superv.action_eat[philoz->id] = 1;
 			//philoz->superv.fork[philoz->id] = 1;
 			log_printer(philoz, 3);
 			usleep_re(philoz->start->time_to_eat);

@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:15 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/12 18:49:01 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:03:15 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(str, count * size);
 	return (str);
 }
-
