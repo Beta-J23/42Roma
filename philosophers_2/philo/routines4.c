@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:47:22 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/05/13 12:04:01 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:12:02 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*p_routine(void *datas)
 	printf("Thread Started, %d\n", philoz->id);
 	//usleep_re(philoz->id);
 	// while non ci sono filosofi died
-	while (philoz->superv.death_alarm != 1)
+	while (philoz->superv.death_alarm != 1)// && (pthread_mutex_lock(&philoz->superv.death_mutex) == 1))
 	{
 		if (j == philoz->start->number_of_times_each_philosopher_must_eat)
 			break;
@@ -45,27 +45,6 @@ void	*p_routine(void *datas)
 		{
 			alone(philoz);
 			return(0);
-		}
-		//die cycle
-		//if ((((ms_time()) - (philoz->superv.time_array[philoz->id][1]) > 
-		//	(unsigned long)philoz->start->time_to_die && j > 0 && i > 0)) || //prova con j
-		if ((((ms_time()) - (philoz->superv.eat[philoz->id]) > 
-			(unsigned long)philoz->start->time_to_die && j > 0 && i > 0)) || //prova con j
-			(((ms_time() - (unsigned long)philoz->start->start_time) > (unsigned long)philoz->start->time_to_die) && (i == 0)))
-		{	
-			printf("ms_time = %lu\n", ms_time());
-			//printf("(philoz->superv.time_array[philoz->id][1]) = %lu, philoz->id = %d\n", philoz->superv.time_array[philoz->id][1], philoz->id);
-			//printf("(ms_time()) - (philoz->superv.time_array[philoz->id][1]) = %lu\n", (ms_time() - philoz->superv.time_array[philoz->id][1]));
-			//printf("(unsigned long)philoz->start->time_to_die) = %lu\n", (unsigned long)philoz->start->time_to_die);
-			philoz->superv.death_alarm = 1;
-			//philoz->superv.action_array[philoz->id][3] = 1;
-			log_printer(philoz, 5);
-			//while (x <= philoz->start->number_of_philosophers)
-			//{
-			//	pthread_mutex_lock(&philoz->superv.forks[x]);
-			//	x++;
-			//}
-			break;
 		}
 		if (philoz->superv.death_alarm == 1)
 			break;
@@ -87,6 +66,34 @@ void	*p_routine(void *datas)
 			usleep_re(philoz->start->time_to_sleep);
 			//philoz->superv.action_array[philoz->id][2] = 0;
 			philoz->superv.action_sleep[philoz->id] = 0;
+		//die cycle
+		//if ((((ms_time()) - (philoz->superv.time_array[philoz->id][1]) > 
+		//	(unsigned long)philoz->start->time_to_die && j > 0 && i > 0)) || //prova con j
+		if (((((ms_time()) - (philoz->superv.eat[philoz->id]) > 
+			(unsigned long)philoz->start->time_to_die)) && j > 0 && i > 0) || //prova con j
+			(((ms_time() - (unsigned long)philoz->start->start_time) > (unsigned long)philoz->start->time_to_die) && (j == 0)))
+		{	
+			printf("ms_time = %lu\n", ms_time());
+			printf("(philoz->superv.eat[philoz->id]) = %lu, philoz->id = %d\n", philoz->superv.eat[philoz->id], philoz->id);
+			printf("time_to_die = %lu\n", (unsigned long)philoz->start->time_to_die);
+			printf("((ms_time()) - (philoz->superv.eat[philoz->id]) = %lu\n", ((ms_time()) - (philoz->superv.eat[philoz->id])));
+			printf("i = %d\n", i);
+			//printf("(philoz->superv.time_array[philoz->id][1]) = %lu, philoz->id = %d\n", philoz->superv.time_array[philoz->id][1], philoz->id);
+			//printf("(ms_time()) - (philoz->superv.time_array[philoz->id][1]) = %lu\n", (ms_time() - philoz->superv.time_array[philoz->id][1]));
+			//printf("(unsigned long)philoz->start->time_to_die) = %lu\n", (unsigned long)philoz->start->time_to_die);
+			philoz->superv.death_alarm = 1;
+			//philoz->superv.action_array[philoz->id][3] = 1;
+			log_printer(philoz, 5);
+			pthread_mutex_lock(&philoz->superv.death_mutex);
+			//while (x <= philoz->start->number_of_philosophers)
+			//{
+			//	pthread_mutex_lock(&philoz->superv.forks[x]);
+			//	x++;
+			//}
+			break;
+		}
+		if (philoz->superv.death_alarm == 1)
+			break;
 		}
 		//sleep
 		//philo_big_brother(philoz);
