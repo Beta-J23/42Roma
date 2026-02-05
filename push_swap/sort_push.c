@@ -6,11 +6,18 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 11:02:17 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/22 15:27:03 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:24:21 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+//appunti per ulteriori implementazioni
+//sorting with move prevision, possibili implementazioni:
+//- see if array already sorted.
+//- se numero di mosse e' uguale prediligi nummero piu piccolo per pb.
+//- rivedi algoritmo ra e rra prima del pb.
+//- se pos_a = pos_b vedi se possibile rr e rrr.
 
 int	number_100(t_stack_a *a, t_stack_b *b)
 {

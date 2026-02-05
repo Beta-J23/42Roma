@@ -6,7 +6,7 @@
 /*   By: alpelliz <alpelliz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:00:31 by alpelliz          #+#    #+#             */
-/*   Updated: 2023/04/22 15:52:35 by alpelliz         ###   ########.fr       */
+/*   Updated: 2023/04/22 12:24:16 by alpelliz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,14 @@ int	check_argv_helper(t_stack_a *a, int i)
 	if ((ft_isdigit(a->array_a[i]) == 0) && (a->array_a[i] != '-')
 		&& (a->array_a[i] != '+'))
 	{
-		write(2, "Error\n", 6);
-		exit (0);
-	}
-	if ((ft_isdigit(a->array_a[i]) == 1) && (((a->array_a[i + 1] == '+'))
-			|| (a->array_a[i + 1] == '-')))
-	{
-		write(2, "Error\n", 6);
+		write(1, "Error: Invalid value found in array\n", 37);
 		exit (0);
 	}
 	if (((a->array_a[i] == '-') || (a->array_a[i] == '+'))
 		&& ((a->array_a[i + 1] == ' ') || (a->array_a[i + 1] == '+')
 			|| (a->array_a[i + 1] == '-')))
 	{
-		write(2, "Error\n", 6);
+		write(1, "Error: + o - alone! INVALID VALUE\n", 35);
 		exit (0);
 	}
 	return (0);
@@ -79,7 +73,7 @@ int	check_double(t_stack_a *a)
 		{
 			if (a->array_int_a[j] == a->array_int_a[i])
 			{
-				write(2, "Error\n", 6);
+				write (1, "Error: Double INT\n", 19);
 				exit (0);
 			}
 			j++;
@@ -99,7 +93,10 @@ int	already_sorted(t_stack_a *a)
 		i++;
 	}
 	if ((i == a->size_of_int - 1) || (i == a->size_of_int))
+	{
+		write(1, "Error: Array already sorted!\n", 30);
 		exit (0);
+	}
 	else
 		return (0);
 }
